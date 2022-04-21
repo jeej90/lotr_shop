@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, flash, redirect, url_for, request
 from application import app, db, bcrypt
 from application.forms import RegistrationForm, LoginForm
 from application.models import RegisteredUser
@@ -14,19 +14,9 @@ def home():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
-    #
-    # if request.method == 'POST':
-    #     user_name = form.user_name.data
-    #     email = form.email.data
-    #     password = form.password.data
-    #
-    #     if len(user_name) == 0 or len(email) == 0 or len(password) == 0:
-    #         error = "Please supply all required fields"
-    #     else:
-    #         registered_user = RegisteredUser(user_name=user_name, email=email, password=password)
-    #         db.session.add(registered_user)
-    #         db.session.commit()
-    #         return 'Registration successful! Welcome to Middle Earth :)'
+    if form.validate_on_submit():
+        flash(f'Welcome {form.user_name.data} to Middle Earth!')
+        return redirect(url_for('home'))
 
     return render_template("register.html", title="Sign up", form=form)
 
@@ -34,4 +24,11 @@ def register():
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == 'admin@blog.com' and form.password.data == 'password':
+            flash('You have been logged in!', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('Login Unsuccessful. Please check username and password', 'danger')
     return render_template("login.html", title="Sign in")

@@ -1,4 +1,5 @@
 from application import db
+from datetime import datetime
 # from sqlalchemy import declarative_base
 # Base = declarative_base()
 # class User(Base):
@@ -38,10 +39,10 @@ class Address(db.Model):
 # JeJe: added password attribute
 class RegisteredUser(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_name = db.Column(db.String(50), uniqe=True, nullable=False)
-    email = db.Column(db.String(100), uniqe=True, nullable=False)
+    user_name = db.Column(db.String(50), unique=True, nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(50), nullable=False)
-    date_joined = db.Column(db.DATETIME, nullable=False)
+    date_joined = db.Column(db.DateTime, nullable=False, default=datetime.now)
     customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=True)
 
     def __repr__(self):
@@ -64,22 +65,22 @@ class Product(db.Model):
         return f"Product('{self.name}', '{self.description}', {self.full_price})"
 
 
-class ProductCategory(db.model):
+class ProductCategory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     category = db.Column(db.String(50), nullable=False)
 
 
-class Size(db.model):
+class Size(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     size = db.Column(db.String(50), nullable=False)
 
 
-class Colour(db.model):
+class Colour(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     colour = db.Column(db.String(50), nullable=False)
 
 
-class Stock(db.model):
+class Stock(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     available_stock = db.Column(db.String(200), nullable=False)
     reserved_stock = db.Column(db.Integer)
