@@ -7,4 +7,3 @@ from application import app
 def home():
     return render_template("home.html", title="Lord of the Rings Shop")
 
-
