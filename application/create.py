@@ -1,5 +1,5 @@
 from application import db
-from application.templates.models import Customer, Address, RegisteredUser
+from application.models import Customer, Address, RegisteredUser
 
 db.drop_all()
 db.create_all()
@@ -9,5 +9,4 @@ testCustomer2 = Customer(first_name="Tunji", last_name="Oladiran", email="tunji.
 
 db.session.add(testCustomer1)
 db.session.add(testCustomer2)
-
 db.session.commit()
