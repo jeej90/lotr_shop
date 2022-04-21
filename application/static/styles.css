@@ -1,23 +1,87 @@
 h1 {
   text-align: center;
 
-  font: 14pt Verdana, Geneva, Arial, Helvetica, sans-serif;
+  font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
 
   font-weight: bold;
 
   line-height: 20pt;
 
+  color: gold;
+
+  font-size: 40px;
+
 }
 
-body {
+h2 {
 
   text-align: center;
 
-  font-size: 10pt;
+  font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
+
+  font-weight: bold;
+
+  line-height: 20pt;
+
+  color: gold;
+
+  font-size: 20px;
+}
+
+.header {
+
+  padding: 20px;
+
+  text-align: center;
+
+  background: #003300;
+
+  border-style: solid;
+
+
+}
+
+.topnav {
+
+  align: center;
+
+  padding: 30px;
+
+  text-align: center;
+
+  background: #272537;
+
+  font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
+
+  position:absolute;
+
+  clear: both;
+
+  border-style: solid;
+
+
+
+}
+
+.topnav a {
+    color: white;
+    padding: 150px;
+    clear:both;
+}
+
+
+
+body {
+
+  background-color: black;
+
+  text-align: center;
+
+  font-size: 15pt;
 
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
 
-  color: black;
+  color: gold;
 
   line-height: 14pt;
 
@@ -28,4 +92,6 @@ body {
   padding-top: 5pt;
 
 }
+
+
 

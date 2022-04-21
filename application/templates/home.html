@@ -1,4 +1,22 @@
 {% extends "layout.html" %}
 {% block body_content %}
-<h1>Lord of the Rings</h1>
+<STYLE>A {text-decoration: none;} </STYLE>
+<main>
+<div class="header">
+  <h1>Lord of the Rings Emporium</h1>
+  <br>
+  <img src="{{url_for('static', filename='images/One_Ring_Blender_Render.png')}}" alt="One Ring Logo" width="100" height="100">
+  <br>
+  <br>
+  <h2>~ One shop to rule them all ~</h2>
+  <br>
+  <br>
+  <br>
+
+<div class="topnav">
+  <a class="active" href="#home">Home</a>
+  <a href="#collections">Collections</a>
+  <a href="#departments">Departments</a>
+</div>
+
 {% endblock %}
