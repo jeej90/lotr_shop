@@ -1,2 +1,6 @@
 flask
 flask-sqlalchemy
+pymysql
+wtforms
+flask_wtf
+markupsafe==2.0.1
