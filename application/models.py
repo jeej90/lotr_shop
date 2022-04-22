@@ -41,7 +41,7 @@ class RegisteredUser(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
-    password = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(100), nullable=False)
     date_joined = db.Column(db.DateTime, nullable=False, default=datetime.now)
     customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=True)
 
@@ -59,7 +59,7 @@ class Product(db.Model):
     size_id = db.Column(db.Integer, db.ForeignKey('size.id'), nullable=True)
     colour_id = db.Column(db.Integer, db.ForeignKey('colour.id'), nullable=True)
     stock_id = db.Column(db.Integer, db.ForeignKey('stock.id'), nullable=True)
-    product_category_id = db.Column(db.Integer, db.ForeignKey('ProductCategory.id'), nullable=True)
+    product_category_id = db.Column(db.Integer, db.ForeignKey('product_category.id'), nullable=True)
 
     def __repr__(self):
         return f"Product('{self.name}', '{self.description}', {self.full_price})"

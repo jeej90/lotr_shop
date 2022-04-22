@@ -15,8 +15,12 @@ def home():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        flash(f'Welcome {form.user_name.data} to Middle Earth!')
-        return redirect(url_for('home'))
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = RegisteredUser(user_name=form.user_name.data, email=form.email.data, password=hashed_password)
+        db.session.add(user)
+        db.session.commit()
+        flash(f'Your account successfully created. Welcome to Middle Earth!')
+        return redirect(url_for('login'))
 
     return render_template("register.html", title="Sign up", form=form)
 
@@ -31,4 +35,4 @@ def login():
             return redirect(url_for('home'))
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
-    return render_template("login.html", title="Sign in")
+    return render_template("login.html", title="Sign in", form=form)

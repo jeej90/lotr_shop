@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'
 
+# The DB below will require the location (root for me) and password (just before @localhost if required)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@localhost/lotr_shop"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
