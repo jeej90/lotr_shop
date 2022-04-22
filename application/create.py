@@ -13,3 +13,4 @@ testUser1 = RegisteredUser(user_name='Adam', email='Adam@gmail.com', password='1
 # db.session.add(testCustomer2)
 db.session.add(testUser1)
 db.session.commit()
+
