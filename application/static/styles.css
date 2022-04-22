@@ -1,7 +1,7 @@
 h1 {
   text-align: center;
 
-  font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
+  font-family: 'Ringbearer', cursive; Geneva, Arial, Helvetica, sans-serif;
 
   font-weight: bold;
 
@@ -41,39 +41,43 @@ h2 {
 
 }
 
-.topnav {
+.nav {
 
-  align: center;
+   border-style: solid;
 
-  padding: 30px;
+   list-style:none;
 
-  text-align: center;
+   margin:0;
 
-  background: #272537;
+   padding:0;
 
-  font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
+   text-align:center;
 
-  position:absolute;
+   font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
 
-  clear: both;
+   position: absolute;
 
-  border-style: solid;
-
+   background: #272537;
 
 
 }
+.nav li{
+    display:inline;
+    padding: 141px;
 
-.topnav a {
+
+}
+.nav a{
+    display:inline-block;
+    padding:40px;
     color: white;
-    padding: 150px;
-    clear:both;
 }
-
-
 
 body {
 
-  background-color: black;
+  background-image: url('lotr_map.jpeg');
+
+
 
   text-align: center;
 
