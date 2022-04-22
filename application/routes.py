@@ -15,8 +15,9 @@ def home():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = RegisteredUser(user_name=form.user_name.data, email=form.email.data, password=hashed_password)
+        # hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        # user = RegisteredUser(user_name=form.user_name.data, email=form.email.data, password=hashed_password)
+        user = RegisteredUser(user_name=form.user_name.data, email=form.email.data, password=form.password.data)
         db.session.add(user)
         db.session.commit()
         flash(f'Your account successfully created. Welcome to Middle Earth!')
