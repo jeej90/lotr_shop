@@ -11,6 +11,24 @@ def home():
     return render_template("home.html", title="Lord of the Rings Emporium")
 
 
+@app.route('/')
+@app.route('/about')
+def about():
+    return render_template("about.html", title="FAQ")
+
+
+@app.route('/')
+@app.route('/contact')
+def contact():
+    return render_template("contact.html", title="Contact Us")
+
+
+@app.route('/')
+@app.route('/faq')
+def faq():
+    return render_template("faq.html", title="FAQ")
+
+
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -42,3 +60,8 @@ def login():
         else:
             flash('Login unsuccessful. Please check email and password')
     return render_template('login.html', title='Login', form=form)
+
+
+@app.errorhandler(404)
+def invalid_route(e):
+    return render_template('error404.html')

@@ -1,105 +1,124 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 h1 {
   text-align: center;
-
   font-family: 'Ringbearer', cursive; Geneva, Arial, Helvetica, sans-serif;
-
   font-weight: bold;
-
   line-height: 20pt;
-
-  color: gold;
-
+  color: #DAA520;
   font-size: 40px;
-
 }
 
 h2 {
-
   text-align: center;
-
   font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
-
   font-weight: bold;
-
   line-height: 20pt;
-
-  color: gold;
-
-  font-size: 20px;
+  color: #DAA520;
+  font-size: 25px;
 }
 
 .header {
-
-  padding: 20px;
-
+  height: 280px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   text-align: center;
-
-  background-color: #003300;
-
-  border-style: solid;
-
-
+  /*background: #003300;*/
+  background: black;
 }
 
-.nav {
+.navbar {
+    margin-top:280px;
+    background-color: #272537;
+    text-align: center;
+    font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
+    position: relative;
 
+
+   /*position: relative;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   background-color: #272537;
+   color: #FFFFFF
    border-style: solid;
-
-   list-style:none;
-
-   margin:0;
-
-   padding:0;
-
-   text-align:center;
-
-   font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
-
-   position: relative;
-
-   background: #272537;
-
-}
-.nav li{
-    display:inline;
-    padding: 141px;
+   text-align: center;
+   font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;*/
 }
 
-.nav a{
-    display:inline-block;
-    padding:40px;
-    color: white;
+.navbar ul {
+   display: inline-flex;
+   list-style: none;
+   color: #FFFFFF;
+}
+
+.navbar ul li {
+    width: 150px;
+    margin: 0px;
+    padding: 0px;
+
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.active, .navbar ul li:hover {
+    background: #DAA520;
+    border-radius: 3px;
 }
 
 body {
-
   background-image: url('images/lotr_map.jpeg');
-
   text-align: center;
-
   font-size: 15pt;
-
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-
-  color: gold;
-
+  color: #B8860B;
   line-height: 14pt;
-
-  padding-left: 5pt;
-
+  /*padding-left: 5pt;
   padding-right: 5pt;
+  padding-top: 5pt;}*/
+  margin-bottom: 60px; /* Margin bottom by footer height */
+  }
 
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  background: black;
+  /*background: #003300;*/
   padding-top: 5pt;
-
 }
 
+.footer-text{
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+/* JeJe: Added more CSS for forms and input etc */
+
+.body-box{
+    background: rgba(0, 0, 0, 0.8);
+    width: 1200px;
+    height: auto;
+    margin: auto;
+    position: relative;
+    padding: 12px 12px 12px 0;
+}
 .content{
     width: 1200px;
     height: auto;
     margin: auto;
     position: relative;
 }
-
 
 .form{
     font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
@@ -217,4 +236,3 @@ small {
     width: 100%;
     margin-top: 0;
   }
-
