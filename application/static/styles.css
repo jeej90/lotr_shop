@@ -1,101 +1,55 @@
 h1 {
   text-align: center;
-
   font-family: 'Ringbearer', cursive; Geneva, Arial, Helvetica, sans-serif;
-
   font-weight: bold;
-
   line-height: 20pt;
-
-  color: gold;
-
+  color: #DAA520;
   font-size: 40px;
-
 }
 
 h2 {
-
   text-align: center;
-
   font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
-
   font-weight: bold;
-
   line-height: 20pt;
-
-  color: gold;
-
-  font-size: 20px;
+  color: #DAA520;
+  font-size: 25px;
 }
 
 .header {
-
-  padding: 20px;
-
+  height: 280px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   text-align: center;
-
   background: #003300;
-
-  border-style: solid;
-
-
 }
 
-.nav {
-
+.navbar {
+   position: relative;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   background-color: #272537;
+   color: #FFFFFF
    border-style: solid;
-
-   list-style:none;
-
-   margin:0;
-
-   padding:0;
-
-   text-align:center;
-
+   text-align: center;
    font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
 
-   position: absolute;
-
-   background: #272537;
-
-
 }
-.nav li{
-    display:inline;
-    padding: 141px;
 
-
-}
-.nav a{
-    display:inline-block;
-    padding:40px;
-    color: white;
-}
 
 body {
-
   background-image: url('lotr_map.jpeg');
-
-
-
   text-align: center;
-
   font-size: 15pt;
-
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-
-  color: gold;
-
+  color: #B8860B;
   line-height: 14pt;
-
-  padding-left: 5pt;
-
+  /*padding-left: 5pt;
   padding-right: 5pt;
-
-  padding-top: 5pt;
-
-}
+  padding-top: 5pt;}*/
 
 
 
