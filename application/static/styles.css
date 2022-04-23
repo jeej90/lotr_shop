@@ -1,3 +1,8 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 h1 {
   text-align: center;
   font-family: 'Ringbearer', cursive; Geneva, Arial, Helvetica, sans-serif;
@@ -79,21 +84,35 @@ body {
   /*padding-left: 5pt;
   padding-right: 5pt;
   padding-top: 5pt;}*/
+  margin-bottom: 60px; /* Margin bottom by footer height */
   }
 
-.footer {
-  bottom: 0;
-  right: 0;
-  left: 0;
+footer {
   position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
   text-align: center;
   background: black;
   /*background: #003300;*/
-  adding-top: 5pt;
-  height: 100px;
+  padding-top: 5pt;
+}
+
+.footer-text{
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+  font-size: 12px;
 }
 
 /* JeJe: Added more CSS for forms and input etc */
+
+.body-box{
+    background: rgba(0, 0, 0, 0.8);
+    width: 1200px;
+    height: auto;
+    margin: auto;
+    position: relative;
+    padding: 12px 12px 12px 0;
+}
 .content{
     width: 1200px;
     height: auto;
