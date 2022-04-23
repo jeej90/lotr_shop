@@ -7,7 +7,7 @@ from application.models import RegisteredUser
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template("home.html", title="Lord of the Rings Shop")
+    return render_template("home.html", title="Lord of the Rings Emporium")
 
 
 @app.route('/', methods=['GET', 'POST'])
