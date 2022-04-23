@@ -15,6 +15,7 @@ db = SQLAlchemy(app)
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
+from flask_login import LoginManager
+login_manager = LoginManager(app)
 
 from application import routes
-

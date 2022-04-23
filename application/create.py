@@ -14,3 +14,8 @@ testUser1 = RegisteredUser(user_name='Adam', email='Adam@gmail.com', password='1
 db.session.add(testUser1)
 db.session.commit()
 
+# adam = "Adam"
+# result = RegisteredUser.query.filter_by(user_name=adam).first()
+# print(result)
+
+
