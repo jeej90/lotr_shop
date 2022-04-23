@@ -1,23 +1,91 @@
 h1 {
   text-align: center;
 
-  font: 14pt Verdana, Geneva, Arial, Helvetica, sans-serif;
+  font-family: 'Ringbearer', cursive; Geneva, Arial, Helvetica, sans-serif;
 
   font-weight: bold;
 
   line-height: 20pt;
 
+  color: gold;
+
+  font-size: 40px;
+
+}
+
+h2 {
+
+  text-align: center;
+
+  font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
+
+  font-weight: bold;
+
+  line-height: 20pt;
+
+  color: gold;
+
+  font-size: 20px;
+}
+
+.header {
+
+  padding: 20px;
+
+  text-align: center;
+
+  background: #003300;
+
+  border-style: solid;
+
+
+}
+
+.nav {
+
+   border-style: solid;
+
+   list-style:none;
+
+   margin:0;
+
+   padding:0;
+
+   text-align:center;
+
+   font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
+
+   position: absolute;
+
+   background: #272537;
+
+
+}
+.nav li{
+    display:inline;
+    padding: 141px;
+
+
+}
+.nav a{
+    display:inline-block;
+    padding:40px;
+    color: white;
 }
 
 body {
 
+  background-image: url('lotr_map.jpeg');
+
+
+
   text-align: center;
 
-  font-size: 10pt;
+  font-size: 15pt;
 
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
 
-  color: black;
+  color: gold;
 
   line-height: 14pt;
 
@@ -28,4 +96,6 @@ body {
   padding-top: 5pt;
 
 }
+
+
 
