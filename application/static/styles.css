@@ -69,7 +69,6 @@ h2 {
     border-radius: 3px;
 }
 
-
 body {
   background-image: url('images/lotr_map.jpeg');
   text-align: center;
@@ -94,4 +93,127 @@ body {
   height: 100px;
 }
 
+/* JeJe: Added more CSS for forms and input etc */
+.content{
+    width: 1200px;
+    height: auto;
+    margin: auto;
+    position: relative;
+}
 
+.form{
+    font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
+
+}
+
+.form-group{
+    font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
+    /* position: relative; */
+    display:block;
+    border-color: black;
+    /* width: 80%; */
+    color: gold;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.form-control-label{
+    font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
+}
+
+.form-control{
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+
+.form-control-lg{
+    font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
+}
+
+.is-invalid{
+    color: red;
+}
+
+.invalid-feedback{
+    color: red;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.form-check{
+
+}
+
+* {
+box-sizing: border-box;
+}
+
+input {
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+input[type=text]:focus {
+  border: 3px solid #555;
+}
+
+label {
+    font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
+    padding: 12px 12px 12px 0;
+    display: block;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+  width: 200px;
+  font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  background-color: #003300;
+  border: none;
+  color: gold;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
+  background-color: #45a049;
+}
+
+small {
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+
+.container {
+  /* background color: black */
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
