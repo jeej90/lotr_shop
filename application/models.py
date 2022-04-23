@@ -1,8 +1,15 @@
-from application import db
+from application import db, login_manager
 from datetime import datetime
+from flask_login import UserMixin
 # from sqlalchemy import declarative_base
 # Base = declarative_base()
 # class User(Base):
+
+
+# Function to load a user for the login feature
+@login_manager.user_loader
+def load_user(registered_user_id):
+    return RegisteredUser.query.get(int(registered_user_id))
 
 
 # JeJe: added customer address relationship as one-to-one relationship
@@ -37,7 +44,7 @@ class Address(db.Model):
 # JeJe: added unique=True for fields that need to be unique
 # JeJe: added nullable as True for customer_id
 # JeJe: added password attribute
-class RegisteredUser(db.Model):
+class RegisteredUser(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
