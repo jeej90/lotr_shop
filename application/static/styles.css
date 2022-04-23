@@ -23,11 +23,19 @@ h2 {
   left: 0;
   right: 0;
   text-align: center;
-  background: #003300;
+  /*background: #003300;*/
+  background: black;
 }
 
 .navbar {
-   position: relative;
+    margin-top:280px;
+    background-color: #272537;
+    text-align: center;
+    font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
+    position: relative;
+
+
+   /*position: relative;
    display: flex;
    justify-content: space-between;
    align-items: center;
@@ -35,13 +43,35 @@ h2 {
    color: #FFFFFF
    border-style: solid;
    text-align: center;
-   font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
+   font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;*/
+}
 
+.navbar ul {
+   display: inline-flex;
+   list-style: none;
+   color: #FFFFFF;
+}
+
+.navbar ul li {
+    width: 150px;
+    margin: 0px;
+    padding: 0px;
+
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.active, .navbar ul li:hover {
+    background: #DAA520;
+    border-radius: 3px;
 }
 
 
 body {
-  background-image: url('lotr_map.jpeg');
+  background-image: url('images/lotr_map.jpeg');
   text-align: center;
   font-size: 15pt;
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
@@ -50,6 +80,18 @@ body {
   /*padding-left: 5pt;
   padding-right: 5pt;
   padding-top: 5pt;}*/
+  }
 
+.footer {
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  background: black;
+  /*background: #003300;*/
+  adding-top: 5pt;
+  height: 100px;
+}
 
 
