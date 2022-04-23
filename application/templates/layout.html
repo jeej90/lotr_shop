@@ -3,33 +3,35 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>{{ title }}</title>
+    <title>{{Title}}</title>
 
-    <!-- Bootstrap CSS -->
+        <!-- Bootstrap CSS -->
 <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
 </head>
-
 <body>
-
     <STYLE>A {text-decoration: none;} </STYLE>
+
 <main>
-    <div class="header">
-          <h1>Lord of the Rings Emporium</h1>
-          <br>
-          <img src="{{url_for('static', filename='images/One_Ring_Blender_Render.png')}}" alt="One Ring Logo" width="100" height="100">
-          <br>
-          <br>
-          <h2>~ One shop to rule them all ~</h2>
-          <br>
-          <br>
-          <br>
-            <div class="nav">
-              <li><a href="/">Home</a></li>
-              <li><a href="/collections/">Collections</a></li>
-              <li><a href="/departments/">Departments</a></li>
-            </div>
-    </div>
+        <div class="header">
+    <h1>The Lord of the Rings Emporium</h1>
+        <br>
+            <a href="/"><img src="{{url_for('static', filename='images/One_Ring_Blender_Render.png')}}" alt="One Ring Logo" width="100" height="100"></a>
+        <br>
+        <br>
+        <h2>~ One shop to rule them all ~</h2>
+        <br>
+
+        </div>
+        <div class="navbar">
+              <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/shop">Shop</a></li>
+                <li><a href="/about">About Us</a></li>
+                  <li><a href="/contact">Contact</a></li>
+                  <li><a href="/faq">FAQ</a></li>
+              </ul>
+        </div>
 </main>
     <div>
         {% with messages = get_flashed_messages() %}
@@ -46,6 +48,16 @@
     <div class="container">
         {% block body_content %} {% endblock %}
     </div>
+
+    <footer>
+        <div class="footer-text">
+            <p>
+                The Lord of the Rings Emporium 2022 ©
+                </br>
+                Grant Way, Isleworth TW7 5QD
+            </p>
+        </div>
+    </footer>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
