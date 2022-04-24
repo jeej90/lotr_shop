@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request
 from application import app, db, bcrypt
 from application.forms import RegistrationForm, LoginForm
-from application.models import RegisteredUser
+from application.models import RegisteredUser, Product
 from flask_login import login_user
 
 
@@ -62,6 +62,39 @@ def login():
     return render_template('login.html', title='Login', form=form)
 
 
+# Dynamic route that creates a page for each product: it filters by  id and returns desired rows of data from the db
+# The route points to the template HTML product page
+@app.route('/')
+@app.route('/product/<int:id>')
+def product(id):
+    products = Product.query.all()
+    product = Product.query.filter_by(id=id)
+    for product in products:
+        print(product.name, product.description, product.full_price)
+    return render_template("product.html",
+                           name=product.name,
+                           description=product.description,
+                           price=product.full_price,
+                           id=product)
+
+
+# This route points to a product category page, it queries and filters results based on category id
+@app.route('/')
+@app.route('/clothes')
+def clothes():
+    products = Product.query.filter_by(product_category_id=1)
+    return render_template("clothes.html", title="Clothes", products=products)
+
+
+# This route points to a page which displays all products in the database
+@app.route('/')
+@app.route('/products')
+def products():
+    products = Product.query.all()
+    return render_template("products.html", title="Products", products=products)
+
+
 @app.errorhandler(404)
 def invalid_route(e):
     return render_template('error404.html')
+

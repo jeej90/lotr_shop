@@ -8,7 +8,9 @@ flask_bcrypt
 email_validator
 flask_login
 cryptography
-
+mysql-connector
+mysql-connector-python
+mysql-connector-python-rf
 
 
 
