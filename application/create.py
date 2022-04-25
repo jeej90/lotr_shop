@@ -1,4 +1,10 @@
 from application import db
+
+# import mysql.connector
+# mydb = mysql.connector.connect(
+#     host='localhost',
+#     user='root',
+#     password='password')
 from application.models import Customer, Address, RegisteredUser, Product, Size, ProductCategory, Colour
 
 # db.drop_all()

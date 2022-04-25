@@ -13,10 +13,18 @@ from application.models import Customer, Address, RegisteredUser, Product, Size,
 
 # image_product_1 = Product(image_id=1)
 
-image_product_1 = (
-    update(Product).
-    where(Product.id == 2).
-    values(image_id=1)
-)
-db.session.add(image_product_1)
+image_product_1 = Product.query.filter_by(id=2).first()
+image_product_1.image_id = 1
 db.session.commit()
+
+# user = User.query.get(5)
+# user.name = 'New Name'
+# db.session.commit()
+
+# image_product_1 = (
+#     update(Product).
+#     where(Product.id == 2).
+#     values(image_id=1)
+# )
+# db.session.add(image_product_1)
+# db.session.commit()
