@@ -254,6 +254,12 @@ input[type=button], input[type=submit], input[type=reset] {
   cursor: pointer;
 }
 
+input[type=number]{
+  font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
+  background-color: white;
+  width: 70px;
+}
+
 input[type=submit]:hover {
   font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
   background-color: #45a049;

@@ -1,7 +1,7 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, session
 from application import app, db, bcrypt
 from application.forms import RegistrationForm, LoginForm
-from application.models import RegisteredUser, Product
+from application.models import RegisteredUser, Product, Stock
 from flask_login import login_user, current_user, logout_user
 
 
@@ -71,12 +71,17 @@ def product(id):
     # products = Product.query.all()
     products = Product.query.filter_by(id=id)
     for product in products:
-        print(product.name, product.description, product.full_price)
+        print(product.name, product.description, product.full_price, product.stock_id)
+    product_stock = Stock.query.filter_by(id=product.stock_id)
+    for stock in product_stock:
+        print(stock.available_stock)
     return render_template("product.html",
                            name=product.name,
                            description=product.description,
                            price=product.full_price,
-                           id=product)
+                           stock_id=product.stock_id,
+                           available_stock=stock.available_stock,
+                           product_id=id)
 
 
 # This route points to a product category page, it queries and filters results based on category id
@@ -126,6 +131,27 @@ def chess_deluxe():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+
+@app.route("/add", methods=['POST'])
+def add_to_cart():
+    try:
+        product_id = request.form.get('product_id')
+        quantity = request.form.get('quantity')
+        product = Product.query.filter_by(id=product_id).first()
+        if product_id and quantity and request.method == "POST":
+            CartItem = {product: {'name': product.name, 'price': product.full_price, 'quantity': quantity}}
+
+            if 'Cart' in session:
+                print(session['Cart'])
+            else:
+                session['Cart'] = CartItem
+                return redirect(request.referrer)
+        return redirect(request.referrer)
+    except Exception as e:
+        print(e)
+    finally:
+        return redirect(request.referrer)
 
 
 @app.errorhandler(404)
