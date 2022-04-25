@@ -2,7 +2,8 @@ from flask import render_template, flash, redirect, url_for, request
 from application import app, db, bcrypt
 from application.forms import RegistrationForm, LoginForm
 from application.models import RegisteredUser, Product
-from flask_login import login_user
+from flask_login import login_user, current_user, logout_user
+
 
 
 @app.route('/')
@@ -48,8 +49,8 @@ def register():
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    # if current_user.is_authenticated:
-    #     return redirect(url_for('home'))
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
         user = RegisteredUser.query.filter_by(email=form.email.data).first()
@@ -121,7 +122,12 @@ def chess_deluxe():
     return render_template("product_chess_deluxe.html", title="Chess Set", products=products)
 
 
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
+
+
 @app.errorhandler(404)
 def invalid_route(e):
     return render_template('error404.html')
-

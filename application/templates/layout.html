@@ -16,7 +16,7 @@
         <div class="header">
     <h1>The Lord of the Rings Emporium</h1>
         <br>
-        <img src="{{url_for('static', filename='images/One_Ring_Blender_Render.png')}}" alt="One Ring Logo" width="100" height="100">
+            <a href="/"><img src="{{url_for('static', filename='images/One_Ring_Blender_Render.png')}}" alt="One Ring Logo" width="100" height="100"></a>
         <br>
         <br>
         <h2>~ One shop to rule them all ~</h2>
@@ -32,6 +32,15 @@
                   <li><a href="/faq">FAQ</a></li>
               </ul>
         </div>
+        <div class="navbar-nav">
+              {% if current_user.is_authenticated %}
+                <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+              {% else %}
+                <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
+                <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
+              {% endif %}
+        </div>
+
 </main>
     <div>
         {% with messages = get_flashed_messages() %}
