@@ -1,7 +1,7 @@
-flask
+flask~=2.1.1
 flask-sqlalchemy
 pymysql
-wtforms
+wtforms~=3.0.1
 flask_wtf
 markupsafe==2.0.1
 flask_bcrypt
@@ -11,3 +11,5 @@ flask_login
 
 
 
+
+SQLAlchemy~=1.4.35

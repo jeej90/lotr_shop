@@ -56,9 +56,9 @@ db.create_all()
 
 # products!
 
-product1 = Product(name='Aragorn V-neck T-shirt', description="The Lord of the Rings Aragorn V-Neck T-Shirt, Black, 100% cotton White t-shirt of 100% cotton", full_price="25.00", barcode="1028974591628", size_id=4, colour_id=2, product_category_id=1)
-
-db.session.add(product1)
+# product1 = Product(name='Aragorn V-neck T-shirt', description="The Lord of the Rings Aragorn V-Neck T-Shirt, Black, 100% cotton White t-shirt of 100% cotton", full_price="25.00", barcode="1028974591628", size_id=4, colour_id=2, product_category_id=1)
+#
+# db.session.add(product1)
 db.session.commit()
 
 # need to resolve stock management control issue based on tables for different sizes of same product
