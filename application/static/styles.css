@@ -104,12 +104,12 @@ footer {
 }
 
 /* JeJe: Added more CSS for forms and input etc */
-
+/* Mya changed width to auto(was 1200px) and margin to 50px(was auto) to help with responsiveness*/
 .body-box{
     background: rgba(0, 0, 0, 0.8);
-    width: 1200px;
+    width: auto;
     height: auto;
-    margin: auto;
+    margin: 50px;
     position: relative;
     padding: 12px 12px 12px 0;
 }
@@ -120,15 +120,28 @@ footer {
     position: relative;
 }
 
+/* Mya added margin-bottom to create space between each line of box*/
 .product-box{
-    background: white;
+    background: #f3e5d8;
     width: 300px;
-    height: 300px;
+    height: 500px;
     margin: auto;
+    margin-bottom: 20px;
     position: relative;
     padding: 12px 12px 12px 12px;
     display:inline-grid;
 }
+
+/*m=Mya this block of code is progress and is for an images box for the individual product pages
+.image-box{
+    background: #f3e5d8;
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    margin-bottom: 20px;
+    position: relative;
+    padding: 12px 12px 12px 12px;
+}*/
 
 .product-title{
   font-family: Arial, Helvetica, sans-serif;

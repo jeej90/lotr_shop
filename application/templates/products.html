@@ -5,8 +5,8 @@
     {% for product in products %}
     <div class="product-box container">
         <h3 class="product-title">{{ product.name }}</h3>
-        <p class="product-price">£{{ product.full_price }}</p>
         <p class="product-description">{{ product.description }}</p>
+        <p class="product-price">£{{ product.full_price }}</p>
     </div>
     {% endfor %}
 </div>

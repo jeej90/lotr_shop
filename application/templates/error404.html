@@ -1,6 +1,11 @@
 {% extends "layout.html" %}
 {% block body_content %}
 <div class="body-box">
-    <h2>Page not found!</h2>
+    <h1>Error - page not found!</h1>
+    <h2>You have veered too far off the route to Mordor and the salvation of Middle Earth.</h2>
+    <img src= "{{ url_for('static', filename='images/frodo_crying.png' )}}" alt="" width="950" height="375"/>
+    <img src= "{{ url_for('static', filename='images/sam_crying.png' )}}" alt="" width="950" height="375"/>
+    <img src= "{{ url_for('static', filename='images/merry_crying.png' )}}" alt="" width="950" height="375"/>
+    <img src= "{{ url_for('static', filename='images/peregrin_crying.png' )}}" alt="" width="950" height="375"/>
 </div>
 {% endblock %}
