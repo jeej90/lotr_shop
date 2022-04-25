@@ -68,8 +68,8 @@ def login():
 @app.route('/')
 @app.route('/product/<int:id>')
 def product(id):
-    products = Product.query.all()
-    product = Product.query.filter_by(id=id)
+    # products = Product.query.all()
+    products = Product.query.filter_by(id=id)
     for product in products:
         print(product.name, product.description, product.full_price)
     return render_template("product.html",
