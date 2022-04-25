@@ -92,17 +92,20 @@ def keyrings_and_badges():
     products = Product.query.filter_by(product_category_id=3)
     return render_template("keyrings_and_badges.html", title="Keyrings & Badges", products=products)
 
+
 # this route points to the collectibles product page, which displays all the collectibles products in the database
 @app.route('/collectibles')
 def collectibles():
     products = Product.query.filter_by(product_category_id=3)
     return render_template("collectibles.html", title="Collectibles", products=products)
 
+
 # this route points to the games product page, which displays all the games products in the database
 @app.route('/games')
 def games():
     products = Product.query.filter_by(product_category_id=2)
     return render_template("games.html", title="Games", products=products)
+
 
 # This route points to a page which displays all products in the database
 @app.route('/')
@@ -111,11 +114,11 @@ def products():
     products = Product.query.all()
     return render_template("products.html", title="Products", products=products)
 
+
 @app.route('/chess')
 def chess_deluxe():
     products = Product.query.filter_by(name='Lord of the Rings Collectible Chess Set - Officially Licensed Film Set Movie Gifts')
     return render_template("product_chess_deluxe.html", title="Chess Set", products=products)
-
 
 
 @app.errorhandler(404)
