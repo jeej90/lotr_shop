@@ -62,3 +62,6 @@ from application.models import Customer, Address, RegisteredUser, Product, Size,
 #
 # db.session.add_all(products4)
 # db.session.commit()
+
+product = Product.query.filter_by(id=1).first()
+print(product)

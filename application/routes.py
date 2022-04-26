@@ -63,6 +63,12 @@ def login():
     return render_template('login.html', title='Login', form=form)
 
 
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
+
+
 # Dynamic route that creates a page for each product: it filters by  id and returns desired rows of data from the db
 # The route points to the template HTML product page
 @app.route('/')
@@ -127,13 +133,7 @@ def chess_deluxe():
     return render_template("product_chess_deluxe.html", title="Chess Set", products=products)
 
 
-@app.route("/logout")
-def logout():
-    logout_user()
-    return redirect(url_for('home'))
-
-
-@app.route("/add", methods=['POST'])
+@app.route("/add", methods=['GET', 'POST'])
 def add_to_cart():
     try:
         product_id = request.form.get('product_id')
@@ -143,15 +143,17 @@ def add_to_cart():
             CartItem = {product: {'name': product.name, 'price': product.full_price, 'quantity': quantity}}
 
             if 'Cart' in session:
-                print(session['Cart'])
+                Cart = session['Cart']
+                print(Cart)
             else:
-                session['Cart'] = CartItem
-                return redirect(request.referrer)
-        return redirect(request.referrer)
+                Cart = CartItem
+                flash(f'Item added to your shopping cart!')
+                return render_template('cart.html')
+        return render_template('cart.html')
     except Exception as e:
         print(e)
     finally:
-        return redirect(request.referrer)
+        return render_template("cart.html")
 
 
 @app.errorhandler(404)
