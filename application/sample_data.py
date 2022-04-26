@@ -1,5 +1,6 @@
 from application import db
 from application.models import Customer, Address, RegisteredUser, Product, Size, ProductCategory, Colour
+from flask import session
 
 # PRODUCT LIST
 
@@ -63,5 +64,18 @@ from application.models import Customer, Address, RegisteredUser, Product, Size,
 # db.session.add_all(products4)
 # db.session.commit()
 
-product = Product.query.filter_by(id=1).first()
-print(product)
+# product = Product.query.filter_by(id=1).first()
+# print(product)
+
+# TESTING SHOPPING CART DICTIONARY
+product_id = 1
+quantity = 1
+product = Product.query.filter_by(id=product_id).first()
+CartItem = {product_id: {'name': product.name, 'price': product.full_price, 'quantity': quantity}}
+# CartItem2 = {product_id: {'name': product.name, 'price': product.full_price, 'quantity': quantity}}
+
+Cart = {}
+Cart = CartItem
+# Cart = Cart + CartItem2
+print(Cart[product_id])
+print(len(Cart))

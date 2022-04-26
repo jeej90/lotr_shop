@@ -1,9 +1,8 @@
-from flask import render_template, flash, redirect, url_for, request, session
+from flask import render_template, flash, redirect, url_for, request, session, current_app
 from application import app, db, bcrypt
 from application.forms import RegistrationForm, LoginForm
-from application.models import RegisteredUser, Product, Stock
+from application.models import RegisteredUser, Product
 from flask_login import login_user, current_user, logout_user
-
 
 
 @app.route('/')
@@ -77,17 +76,111 @@ def product(id):
     # products = Product.query.all()
     products = Product.query.filter_by(id=id)
     for product in products:
-        print(product.name, product.description, product.full_price, product.stock_id)
-    product_stock = Stock.query.filter_by(id=product.stock_id)
-    for stock in product_stock:
-        print(stock.available_stock)
+        print(product.name, product.description, product.full_price, product.available_stock)
     return render_template("product.html",
                            name=product.name,
                            description=product.description,
                            price=product.full_price,
-                           stock_id=product.stock_id,
-                           available_stock=stock.available_stock,
+                           available_stock=product.available_stock,
                            product_id=id)
+
+
+def cart_items(item1, item2):
+    if isinstance(item1, list) and isinstance(item2, list):
+        return item1 + item2
+    elif isinstance(item1, dict) and isinstance(item2, dict):
+        return dict(list(item1.item() + item2.item()))
+    return False
+
+
+@app.route("/add", methods=['GET', 'POST'])
+def add_to_cart():
+    try:
+        product_id = request.form.get('product_id')
+        quantity = request.form.get('quantity')
+        product = Product.query.filter_by(id=product_id).first()
+        cart_length = 0
+        if current_user.is_authenticated:
+            if product_id and quantity and request.method == "POST":
+                CartItem = {product_id: {'name': product.name, 'price': float(product.full_price), 'quantity': quantity}}
+                if 'Cart' in session:
+                    print(session['Cart'])
+                    if product_id in session['Cart']:
+                        for key, item in session['Cart'].items():
+                            if int(key) == int(product_id):
+                                session.modified = True
+                                item['quantity'] += 1
+                    else:
+                        session['Cart'] = cart_items(session['Cart'], CartItem)
+                        return redirect('cart.html')
+                else:
+                    session['Cart'] = CartItem
+                    flash(f'Item added to your shopping cart!')
+                    return render_template('cart.html')
+
+    except Exception as e:
+        print(e)
+    finally:
+        return render_template("cart.html")
+
+
+@app.route('/cart')
+def get_cart():
+    if 'Cart' not in session or len(session['Cart']) <= 0:
+        return redirect(url_for('home'))
+    subtotal = 0
+    grandtotal = 0
+
+    for key, product in session['Cart'].items():
+        grandtotal += float(product['price']) * int(product['quantity'])
+    return render_template('cart.html', subtotal=subtotal, grandtotal=grandtotal)
+
+
+# @app.route("/cart", methods=['GET', 'POST'])
+# def cart():
+#     return render_template("cart.html")
+
+
+@app.route('/updatecart/<int:code>', methods=['POST'])
+def update_cart(code):
+    if 'Cart' not in session or len(session['Cart']) <= 0:
+        return redirect(url_for('home'))
+    if request.method == "POST":
+        quantity = request.form.get('quantity')
+        try:
+            session.modified = True
+            for key, item in session['Cart'].items():
+                if int(key) == code:
+                    item['quantity'] = quantity
+                    flash('Item is updated!')
+                    return redirect(url_for('get_cart'))
+        except Exception as e:
+            print(e)
+            return redirect(url_for('get_cart'))
+
+
+@app.route('/deleteitem/<int:id>')
+def delete_item(id):
+    if 'Cart' not in session or len(session['Cart']) <= 0:
+        return redirect(url_for('home'))
+    try:
+        session.modified = True
+        for key, item in session['Cart'].items():
+            if int(key) == id:
+                session['Cart'].pop(key, None)
+                return redirect(url_for('get_cart'))
+    except Exception as e:
+        print(e)
+        return redirect(url_for('get_cart'))
+
+
+@app.route('/clearcart')
+def clear_cart():
+    try:
+        session.pop('Cart', None)
+        return redirect(url_for('home'))
+    except Exception as e:
+        print(e)
 
 
 # This route points to a product category page, it queries and filters results based on category id
@@ -131,29 +224,6 @@ def products():
 def chess_deluxe():
     products = Product.query.filter_by(name='Lord of the Rings Collectible Chess Set - Officially Licensed Film Set Movie Gifts')
     return render_template("product_chess_deluxe.html", title="Chess Set", products=products)
-
-
-@app.route("/add", methods=['GET', 'POST'])
-def add_to_cart():
-    try:
-        product_id = request.form.get('product_id')
-        quantity = request.form.get('quantity')
-        product = Product.query.filter_by(id=product_id).first()
-        if product_id and quantity and request.method == "POST":
-            CartItem = {product: {'name': product.name, 'price': product.full_price, 'quantity': quantity}}
-
-            if 'Cart' in session:
-                Cart = session['Cart']
-                print(Cart)
-            else:
-                Cart = CartItem
-                flash(f'Item added to your shopping cart!')
-                return render_template('cart.html')
-        return render_template('cart.html')
-    except Exception as e:
-        print(e)
-    finally:
-        return render_template("cart.html")
 
 
 @app.errorhandler(404)
