@@ -88,35 +88,33 @@ def product(id):
 def cart_items(item1, item2):
     if isinstance(item1, list) and isinstance(item2, list):
         return item1 + item2
-    elif isinstance(item1, dict) and isinstance(item2, dict):
+    if isinstance(item1, dict) and isinstance(item2, dict):
         return dict(list(item1.item() + item2.item()))
-    return False
 
 
-@app.route("/add", methods=['GET', 'POST'])
+@app.route("/add", methods=['POST'])
 def add_to_cart():
     try:
         product_id = request.form.get('product_id')
-        quantity = request.form.get('quantity')
+        quantity = int(request.form.get('quantity'))
         product = Product.query.filter_by(id=product_id).first()
-        cart_length = 0
-        if current_user.is_authenticated:
-            if product_id and quantity and request.method == "POST":
-                CartItem = {product_id: {'name': product.name, 'price': float(product.full_price), 'quantity': quantity}}
-                if 'Cart' in session:
-                    print(session['Cart'])
-                    if product_id in session['Cart']:
-                        for key, item in session['Cart'].items():
-                            if int(key) == int(product_id):
-                                session.modified = True
-                                item['quantity'] += 1
-                    else:
-                        session['Cart'] = cart_items(session['Cart'], CartItem)
-                        return redirect('cart.html')
+
+        if product_id and quantity and request.method == "POST":
+            CartItem = {product_id: {'name': product.name, 'price': float(product.full_price), 'quantity': quantity}}
+            if 'Cart' in session:
+                print(session['Cart'])
+                if product_id in session['Cart']:
+                    for key, item in session['Cart'].items():
+                        if int(key) == int(product_id):
+                            session.modified = True
+                            item['quantity'] += 1
                 else:
-                    session['Cart'] = CartItem
-                    flash(f'Item added to your shopping cart!')
-                    return render_template('cart.html')
+                    session['Cart'] = cart_items(session['Cart'], CartItem)
+                    return redirect('cart.html')
+            else:
+                session['Cart'] = CartItem
+                flash(f'Item added to your shopping cart!')
+                return render_template('cart.html')
 
     except Exception as e:
         print(e)
@@ -128,12 +126,11 @@ def add_to_cart():
 def get_cart():
     if 'Cart' not in session or len(session['Cart']) <= 0:
         return redirect(url_for('home'))
-    subtotal = 0
-    grandtotal = 0
-
+    # subtotal = 0
+    grand_total = 0
     for key, product in session['Cart'].items():
-        grandtotal += float(product['price']) * int(product['quantity'])
-    return render_template('cart.html', subtotal=subtotal, grandtotal=grandtotal)
+        grand_total += float(product['price']) * int(product['quantity'])
+    return render_template('cart.html', grand_total=grand_total)
 
 
 # @app.route("/cart", methods=['GET', 'POST'])
@@ -178,7 +175,8 @@ def delete_item(id):
 def clear_cart():
     try:
         session.pop('Cart', None)
-        return redirect(url_for('home'))
+        flash('Your cart is empty.')
+        return redirect(url_for('get_cart'))
     except Exception as e:
         print(e)
 
