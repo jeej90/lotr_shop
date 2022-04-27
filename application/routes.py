@@ -115,11 +115,11 @@ def products():
     products = Product.query.all()
     return render_template("products.html", title="Products", products=products)
 
-
-@app.route('/chess')
-def chess_deluxe():
-    products = Product.query.filter_by(name='Lord of the Rings Collectible Chess Set - Officially Licensed Film Set Movie Gifts')
-    return render_template("product_chess_deluxe.html", title="Chess Set", products=products)
+#this route is for displaying multiple images, do not use unless we decide to use multiple images
+# @app.route('/chess')
+# def chess_deluxe():
+#     products = Product.query.filter_by(name='Lord of the Rings Collectible Chess Set - Officially Licensed Film Set Movie Gifts')
+#     return render_template("product_chess_deluxe.html", title="Chess Set", products=products)
 
 
 @app.route("/logout")
