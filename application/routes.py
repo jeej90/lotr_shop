@@ -70,6 +70,7 @@ def login():
 def product(id):
     # products = Product.query.all()
     products = Product.query.filter_by(id=id)
+    # images = Image.query.filter_by(name=products)
     for product in products:
         print(product.name, product.description, product.full_price)
     return render_template("product.html",
@@ -78,6 +79,8 @@ def product(id):
                            price=product.full_price,
                            id=product)
 
+# (in for loop?) and image in images
+# (in return?)                            image=image.name,
 
 # This route points to a product category page, it queries and filters results based on category id
 @app.route('/')

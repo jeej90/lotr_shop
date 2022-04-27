@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 {% block body_content %}
 <div class="container body-box">
-    <div class="container image-box">
-        <img src="{{ url_for('static', filename='images/product_images/"{{ image.name }}>
+    <div class="container image">
+        <a href="/"><img src="{{ url_for('static', filename='images/product_images/2.keyring.arwen.jpg"></a>
     </div>
     <div class="container">
         <h3 class="product-title">{{ name }}</h3>
@@ -11,3 +11,5 @@
     </div>
 </div>
 {% endblock %}
+
+
