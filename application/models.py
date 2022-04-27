@@ -1,6 +1,7 @@
 from application import db, login_manager
 from datetime import datetime
 from flask_login import UserMixin
+from sqlalchemy import update
 # from sqlalchemy import declarative_base
 # Base = declarative_base()
 # class User(Base):
@@ -57,6 +58,7 @@ class RegisteredUser(db.Model, UserMixin):
 
 
 # JeJe: added product classes
+
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
@@ -71,6 +73,7 @@ class Product(db.Model):
     colour_id = db.Column(db.Integer, db.ForeignKey('colour.id'), nullable=True)
     # stock_id = db.Column(db.Integer, db.ForeignKey('stock.id'), nullable=True)
     product_category_id = db.Column(db.Integer, db.ForeignKey('product_category.id'), nullable=True)
+    image_id = db.Column(db.Integer, db.ForeignKey('image.id'), nullable=True)
 
     def __repr__(self):
         return f"Product('{self.name}', '{self.description}', {self.full_price})"
@@ -91,13 +94,16 @@ class Colour(db.Model):
     colour = db.Column(db.String(50), nullable=False)
 
 
-class Stock(db.Model):
+# class Stock(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     available_stock = db.Column(db.String(200), nullable=False)
+#     reserved_stock = db.Column(db.Integer)
+#     sold_stock = db.Column(db.Integer)
+#     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=True)
+#
+#     def __repr__(self):
+#         return f"Stock('{self.available_stock}', '{self.reserved_stock}', {self.full_price})"
+
+class Image(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    available_stock = db.Column(db.String(200), nullable=False)
-    reserved_stock = db.Column(db.Integer)
-    sold_stock = db.Column(db.Integer)
-    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=True)
-
-    def __repr__(self):
-        return f"Stock('{self.available_stock}', '{self.reserved_stock}', {self.full_price})"
-
+    name = db.Column(db.String(200), nullable=False)
