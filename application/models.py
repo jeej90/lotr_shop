@@ -64,9 +64,12 @@ class Product(db.Model):
     # need to change full price from string to float so we can manipulate this
     full_price = db.Column(db.String(50), nullable=False)
     barcode = db.Column(db.String(200), unique=True, nullable=False)
-    size_id = db.Column(db.Integer, db.ForeignKey('size.id'), nullable=True)
+    available_stock = db.Column(db.Integer)
+    reserved_stock = db.Column(db.Integer)
+    sold_stock = db.Column(db.Integer)
+    # size_id = db.Column(db.Integer, db.ForeignKey('size.id'), nullable=True)
     colour_id = db.Column(db.Integer, db.ForeignKey('colour.id'), nullable=True)
-    stock_id = db.Column(db.Integer, db.ForeignKey('stock.id'), nullable=True)
+    # stock_id = db.Column(db.Integer, db.ForeignKey('stock.id'), nullable=True)
     product_category_id = db.Column(db.Integer, db.ForeignKey('product_category.id'), nullable=True)
 
     def __repr__(self):

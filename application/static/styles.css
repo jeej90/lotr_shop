@@ -356,6 +356,12 @@ small {
   padding: 20px;
 }
 
+.grid-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
 .col-25 {
   float: left;
   width: 25%;

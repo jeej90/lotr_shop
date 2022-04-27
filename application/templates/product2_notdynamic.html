@@ -1,11 +1,9 @@
 {% extends "layout.html" %}
 {% block body_content %}
-
 <div class="container body-box">
     <div class="grid-container">
         <div class="grid-child image">
-            <img src= {{ image_url }}
-            <img src="{{ url_for('static', filename='images/product_images/' )}}" {{ image.name }} width="75px" height="350px"/>
+            <img src="{{ url_for('static', filename='images/product_images/2.keyring.arwen.jpg' )}}" width="75px" height="350px"/>
         </div>
         <div class="grid-child product">
             <h3 class="product-title">{{ name }}</h3>
@@ -15,5 +13,3 @@
     </div>
 </div>
 {% endblock %}
-
-

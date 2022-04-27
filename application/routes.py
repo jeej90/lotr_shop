@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request
 from application import app, db, bcrypt
 from application.forms import RegistrationForm, LoginForm
-from application.models import RegisteredUser, Product
+from application.models import RegisteredUser, Product, Image
 from flask_login import login_user, current_user, logout_user
 
 
@@ -65,22 +65,27 @@ def login():
 
 # Dynamic route that creates a page for each product: it filters by  id and returns desired rows of data from the db
 # The route points to the template HTML product page
-@app.route('/')
+#@app.route('/')
 @app.route('/product/<int:id>')
 def product(id):
     # products = Product.query.all()
     products = Product.query.filter_by(id=id)
-    # images = Image.query.filter_by(name=products)
+    image_name = session.query(Image)
+    image_url_add = '"{{ url_for(\'static', filename=\'images/product_images/' + image_name + ' )}}"'
     for product in products:
         print(product.name, product.description, product.full_price)
+    for attr, value in image.name():
+        image_name = q.filter(getattr(Image, attr))
     return render_template("product.html",
+                           image_url=image.name,
                            name=product.name,
                            description=product.description,
                            price=product.full_price,
                            id=product)
 
-# (in for loop?) and image in images
-# (in return?)                            image=image.name,
+q = session.query(myClass)
+for attr, value in web_dict.items():
+    q = q.filter(getattr(myClass, attr).like("%%%s%%" % value))
 
 # This route points to a product category page, it queries and filters results based on category id
 @app.route('/')
