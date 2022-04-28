@@ -51,13 +51,13 @@ from application.models import Customer, Address, RegisteredUser, Product, Size,
 # db.session.commit()
 
 
-# collectibles category
-# product14 =
-# product15 =
-# product16 =
-# product17 =
-# product18 =
-# product19 =
+# # collectibles category
+# product14 = Product(name="Lord of the Rings Gimli Figure", description="This Gimli is a 7-inch scale figure featuring 16 points of articulation, detailed sculpting and a full range of accessories. Comes packaged in a full-color window box with hangtag. 6.4 x 5.1 x 15.2cm", full_price="40.00", barcode="5482365121224", available_stock=6, product_category_id=4)
+# product15 = Product(name="Lord of the Rings Legolas Action Figure", description="This Legolas is a 7-inch scale figure featuring 16 points of articulation, detailed sculpting and a full range of accessories. Comes packaged in a full-color window box with hangtag.  5.4 x 2.5 x 18.8cm", full_price="40.00", barcode="5911233215521", available_stock=5, product_category_id=4)
+# product16 = Product(name="Lord of the Rings Galadriel Figurine", description="This Galadriel figurine is made of lead and painted by hand. Comes boxed with a magazine (in English) about the character in the saga. 30 x 20 x 10cm", full_price="40.00", barcode="1248555112322", available_stock=8, product_category_id=4)
+# product17 = Product(name="Lord of the Rings Statue Gollum", description="Tortured and wrought wretched by the lure of the One Ring, Gollum is a withered, piteous creature. The most iconic creature from The Lord Of The Rings movie trilogy, Gollum was also a technological breakthrough. The statue is an Open Edition piece. 14 x 11 x 15cm", full_price="75.00", barcode="3225122445623", available_stock=5, product_category_id=4)
+# product18 = Product(name="Elven Green Leaf Brooch Pin Pendant Necklace with Jewellery Box", description="Made from platinum and enamel. Necklace with a metal detailed jewellery box.Pendant Size :6.5*4.5CM Chain Length:50±2CM", full_price="75.00", barcode="2336125446325", available_stock=9, product_category_id=4)
+# product19 = Product(name="Lord of the Rings Replica of The One Ring Necklace", description="Ring made for 24 carat gold, with inscription with all round. Box contents: in an jewellery box. Chain 60 cm; Ring Diameter: Approx. 20 mm, scale approx. 62 mm, Width approx. 7 mm", full_price="95.00", barcode="2263255124121", available_stock=12, product_category_id=4)
 #
 # products4 = [product14, product15, product16, product17, product18, product19]
 #
