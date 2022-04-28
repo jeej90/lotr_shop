@@ -11,6 +11,7 @@ cryptography
 mysql-connector
 mysql-connector-python
 mysql-connector-python-rf
+flask_session
 
 
 
