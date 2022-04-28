@@ -1,14 +1,16 @@
 from flask import render_template, flash, redirect, url_for, request, session, current_app
 from application import app, db, bcrypt
-from application.forms import RegistrationForm, LoginForm
-from application.models import RegisteredUser, Product, Image
+from application.forms import RegistrationForm, LoginForm, AdminLogin
+from application.models import RegisteredUser, Product, Image, Administrator, Staff
 from flask_login import login_user, current_user, logout_user
+from flask_admin import Admin
 
 
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template("home.html", title="Lord of the Rings Emporium")
+    products = Product.query.all()
+    return render_template("home.html", title="Lord of the Rings Emporium", products=products)
 
 
 @app.route('/')

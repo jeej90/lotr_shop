@@ -20,4 +20,12 @@ bcrypt = Bcrypt(app)
 from flask_login import LoginManager
 login_manager = LoginManager(app)
 
+from flask_admin import Admin
+admin = Admin(app)
+
+from application.models import Administrator
+from flask_admin.contrib.sqla import ModelView
+
+admin.add_view(ModelView(Administrator, db.session))
+
 from application import routes

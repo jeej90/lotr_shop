@@ -1,6 +1,6 @@
 
 from application import db
-from application.models import Customer, Address, RegisteredUser, Product, Size, Image, ProductCategory, Colour
+from application.models import Customer, Address, RegisteredUser, Product, Size, Image, ProductCategory, Colour, Admin, Staff
 from flask import session
 
 
@@ -150,15 +150,24 @@ from sqlalchemy import update
 # product = Product.query.filter_by(id=1).first()
 # print(product)
 
-# TESTING SHOPPING CART DICTIONARY
-product_id = 1
-quantity = 1
-product = Product.query.filter_by(id=product_id).first()
-CartItem = {product_id: {'name': product.name, 'price': product.full_price, 'quantity': quantity}}
-# CartItem2 = {product_id: {'name': product.name, 'price': product.full_price, 'quantity': quantity}}
 
-Cart = {}
-Cart = CartItem
-# Cart = Cart + CartItem2
-print(Cart[product_id])
-print(len(Cart))
+# admin1 = Admin(user_name='admin', email="jihan.alfarra@gmail.com", password="admin", staff_id="1")
+# staff1 = Staff(first_name='Jihan', last_name="Alfarra", DOB="1900-11-05", job_title="Web manager", start_date="2022-01-01")
+
+# TESTING SHOPPING CART DICTIONARY
+# product_id = 1
+# quantity = 1
+# product = Product.query.filter_by(id=product_id).first()
+# CartItem = {product_id: {'name': product.name, 'price': product.full_price, 'quantity': quantity}}
+# # CartItem2 = {product_id: {'name': product.name, 'price': product.full_price, 'quantity': quantity}}
+#
+# Cart = {}
+# Cart = CartItem
+# # Cart = Cart + CartItem2
+# print(Cart[product_id])
+# print(len(Cart))
+
+# staff1 = Staff(first_name='Jihan', last_name="Alfarra", DOB="1900-11-05", job_title="Web manager", start_date="2022-01-01")
+admin1 = Admin(user_name="admin", email="jihan.alfarra@gmail.com", password="admin", staff_id="1")
+db.session.add(admin1)
+db.session.commit()

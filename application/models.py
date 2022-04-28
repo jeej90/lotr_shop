@@ -1,6 +1,9 @@
+import login as login
 from application import db, login_manager
 from datetime import datetime
-from flask_login import UserMixin
+from flask_login import UserMixin, current_user, login_user
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
 from sqlalchemy import update
 # from sqlalchemy import declarative_base
 # Base = declarative_base()
@@ -107,4 +110,25 @@ class Colour(db.Model):
 class Image(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
+
+
+class Administrator(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_name = db.Column(db.String(50), unique=True, nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    password = db.Column(db.String(200), nullable=False)
+    staff_id = db.Column(db.Integer, db.ForeignKey('staff.id'), nullable=True)
+
+
+class Staff(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(50), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
+    DOB = db.Column(db.DATE, nullable=True)
+    job_title = db.Column(db.String(100), unique=True, nullable=False)
+    start_date = db.Column(db.DATE, nullable=True)
+    address_id = db.Column(db.Integer, db.ForeignKey('address.id'), nullable=False)
+    staff_address = db.relationship('Address', backref='staff', uselist=False)
+
+
 

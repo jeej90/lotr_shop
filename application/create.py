@@ -5,7 +5,7 @@ from application import db
 #     host='localhost',
 #     user='root',
 #     password='password')
-from application.models import Customer, Address, RegisteredUser, Product, Size, ProductCategory, Colour
+from application.models import Customer, Address, RegisteredUser, Product, Size, ProductCategory, Colour, Admin, Staff
 
 # db.drop_all()
 # db.create_all()
@@ -78,4 +78,9 @@ from application.models import Customer, Address, RegisteredUser, Product, Size,
 # result = RegisteredUser.query.filter_by(user_name=adam).first()
 # print(result)
 
+
+# admin1 = Admin(user_name='admin', email="jihan.alfarra@gmail.com", password="admin", staff_id="1")
+# # staff1 = Staff(first_name='Jihan', last_name="Alfarra", DOB="1900-11-05", job_title="Web manager", start_date="2022-01-01")
+# db.session.add(admin1)
+# db.session.commit()
 

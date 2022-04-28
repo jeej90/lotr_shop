@@ -1,3 +1,17 @@
 {% extends "layout.html" %}
 {% block body_content %}
+<div class="container body-box">
+  <img src="{{url_for('static', filename='images/carousel1.jpeg')}}" style="width:100%;">
+    </br>
+    </br>
+    {% for product in products %}
+    <div class="container product-box container">
+        <h3 class="product-title">{{ product.name }}</h3>
+        <p class="product-description">{{ product.description }}</p>
+        <p class="product-price">£{{ product.full_price }}</p>
+        <p class="more details">{{ id }}</p>
+    </div>
+    {% endfor %}
+</div>
+
 {% endblock %}

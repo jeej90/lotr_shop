@@ -43,18 +43,18 @@
                   <li><a href="/about">About Us</a></li>
                   <li><a href="/contact">Contact</a></li>
                   <li><a href="/faq">FAQ</a></li>
-                  <li><div class="navbar-nav">
-              {% if current_user.is_authenticated %}
-                <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
-              {% else %}
-                <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
-                <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
-              {% endif %}
-              <a href="{{url_for('get_cart')}}" class="nav-item nav-link"> Cart ({{ session['Cart']|length }}) </a>
-              </div>
-                  </li>
+
               </ul>
         </div>
+                      <div class="navbar-nav">
+              {% if current_user.is_authenticated %}
+                <a class="navbar-nav nav-link" href="{{ url_for('logout') }}">Logout</a>
+              {% else %}
+                <a class="navbar-nav nav-link" href="{{ url_for('login') }}">Login</a>
+<!--                <a class="nnavbar-nav nav-link" href="{{ url_for('register') }}">Register</a>-->
+              {% endif %}
+              <a href="{{url_for('get_cart')}}" class="navbar-nav nav-link"> Cart ({{ session['Cart']|length }}) </a>
+              </div>
 </main>
     <div>
         {% with messages = get_flashed_messages() %}
