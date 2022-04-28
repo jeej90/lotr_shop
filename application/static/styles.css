@@ -190,13 +190,49 @@ footer {
 /*m=Mya this block of code is progress and is for an images box for the individual product pages
 .image-box{
     background: #f3e5d8;
-    width: 500px;
+    width: 720px;
     height: 500px;
     margin: auto;
     margin-bottom: 20px;
     position: relative;
     padding: 12px 12px 12px 12px;
-}*/
+    align: left;
+}
+.image-box img{
+    width: 500px;
+    height: 350px;
+    border: 4px solid white;
+    box=shadow: 0 5px 25px rgba(0,0,0,.5);
+}
+.ul.image-thumb{
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ul.image-thumb li {
+    list-style: none;
+    margin: 0 10px;
+}
+.ul.image-thumb li img {
+    border: 4px solid white;
+    box-shadow 0 5px 25px rgba(0,0,0,.5);
+}
+m=this ends the block for multiple images*/
+
+
+
+.product-info-box{
+    /*background: #f3e5d8;*/
+    /*width: 400px;
+    height: 500px;*/
+    margin: auto;
+    margin-bottom: 20px;
+    position: relative;
+    padding: 12px 12px 12px 12px;
+    align: right;
+}
 
 .product-title{
   font-family: Arial, Helvetica, sans-serif;
@@ -318,6 +354,12 @@ small {
   /* background color: black */
   border-radius: 5px;
   padding: 20px;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
 }
 
 .col-25 {

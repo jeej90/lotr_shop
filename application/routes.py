@@ -1,7 +1,7 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, session
 from application import app, db, bcrypt
 from application.forms import RegistrationForm, LoginForm
-from application.models import RegisteredUser, Product
+from application.models import RegisteredUser, Product, Image
 from flask_login import login_user, current_user, logout_user
 
 
@@ -65,47 +65,66 @@ def login():
 
 # Dynamic route that creates a page for each product: it filters by  id and returns desired rows of data from the db
 # The route points to the template HTML product page
-@app.route('/')
+#@app.route('/')
 @app.route('/product/<int:id>')
 def product(id):
     # products = Product.query.all()
     products = Product.query.filter_by(id=id)
     for product in products:
-        print(product.name, product.description, product.full_price)
+        print(product.name, product.description, product.full_price, product.image_id)
+        image = Image.query.filter_by(id=product.image_id)
+        for i in image:
+            print(i.name)
     return render_template("product.html",
+                           image_name=i.name,
                            name=product.name,
                            description=product.description,
                            price=product.full_price,
                            id=product)
 
 
-# This route points to a product category page, it queries and filters results based on category id
 @app.route('/')
 @app.route('/clothes')
 def clothes():
     products = Product.query.filter_by(product_category_id=1)
-    return render_template("clothes.html", title="Clothes", products=products)
+    for product in products:
+        id = str(product.id)
+        print(id)
+    return render_template("clothes.html", title="Clothes", products=products, id=id)
 
 
 # this route points to the keyrings product page, which displays all the keyring products in the database
 @app.route('/keyrings')
 def keyrings_and_badges():
     products = Product.query.filter_by(product_category_id=3)
-    return render_template("keyrings_and_badges.html", title="Keyrings & Badges", products=products)
+    for product in products:
+        id = str(product.id)
+        print(id)
+    return render_template("keyrings_and_badges.html", title="Keyrings & Badges", products=products, id=id)
 
 
 # this route points to the collectibles product page, which displays all the collectibles products in the database
 @app.route('/collectibles')
 def collectibles():
-    products = Product.query.filter_by(product_category_id=3)
-    return render_template("collectibles.html", title="Collectibles", products=products)
+    products = Product.query.filter_by(product_category_id=4)
+    for product in products:
+        id = str(product.id)
+        print(id)
+    return render_template("collectibles.html", title="Collectibles", products=products, id=id)
 
 
 # this route points to the games product page, which displays all the games products in the database
 @app.route('/games')
 def games():
     products = Product.query.filter_by(product_category_id=2)
-    return render_template("games.html", title="Games", products=products)
+    for product in products:
+        id = str(product.id)
+        print(id)
+        # images = Image.query.filter_by(id=product.image_id)
+        # for image in images:
+        #     image_name = Image.query.filter_by(id=product.image_id)
+        #     print(image.name)
+    return render_template("games.html", title="Games", products=products, id=id)
 
 
 # This route points to a page which displays all products in the database
@@ -115,11 +134,11 @@ def products():
     products = Product.query.all()
     return render_template("products.html", title="Products", products=products)
 
-
-@app.route('/chess')
-def chess_deluxe():
-    products = Product.query.filter_by(name='Lord of the Rings Collectible Chess Set - Officially Licensed Film Set Movie Gifts')
-    return render_template("product_chess_deluxe.html", title="Chess Set", products=products)
+#this route is for displaying multiple images, do not use unless we decide to use multiple images
+# @app.route('/chess')
+# def chess_deluxe():
+#     products = Product.query.filter_by(name='Lord of the Rings Collectible Chess Set - Officially Licensed Film Set Movie Gifts')
+#     return render_template("product_chess_deluxe.html", title="Chess Set", products=products)
 
 
 @app.route("/logout")
