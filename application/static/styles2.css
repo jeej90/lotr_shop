@@ -33,6 +33,14 @@ h2 {
   height:350px;
 }
 
+.shopping-basket {
+    position: absolute;
+    right: 8%;
+    margin-top:-60px;
+
+
+}
+
 .navbar {
     height: 70px;
     margin-top:350px;
@@ -169,6 +177,7 @@ footer {
     position: relative;
     padding: 12px 12px 12px 0;
 }
+
 .content{
     width: 1200px;
     height: auto;
