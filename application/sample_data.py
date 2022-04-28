@@ -119,13 +119,21 @@ from sqlalchemy import update
 # images = Image.query.filter_by(id=1)
 # print(images)
 
-products = Product.query.filter_by(id=1)
-for product in products:
-    print(product.name,
-          product.description,
-          product.full_price,
-          product.image_id)
-    image = Image.query.filter_by(id=product.image_id)
-    for i in image:
-        print(i.name)
+# products = Product.query.filter_by(id=3)
+# for product in products:
+#     id = product.id
+#     print(product.name,
+#           product.description,
+#           product.full_price,
+#           product.image_id)
+#     image = Image.query.filter_by(id=product.image_id)
+#     for i in image:
+#         print(i.name)
+#     products = Product.query.filter_by(id=3)
+#     for product in products:
+#         id = product.id
+#     images = Image.query.filter_by(id=product.image_id)
+#     for image in images:
+#         image_name = Image.query.filter_by(id=product.image_id)
+#         print(image.name)
 

@@ -85,11 +85,11 @@ def product(id):
 
 # image_url = "{{ url_for('static', filename ='images/product_images/" + image_name + "') }}"
 
-@app.route('/')
-@app.route('/clothes')
-def clothes():
-    products = Product.query.filter_by(product_category_id=1)
-    return render_template("clothes.html", title="Clothes", products=products)
+# @app.route('/')
+# @app.route('/clothes')
+# def clothes():
+#     products = Product.query.filter_by(product_category_id=1)
+#     return render_template("clothes.html", title="Clothes", products=products)
 
 
 # this route points to the keyrings product page, which displays all the keyring products in the database
@@ -102,7 +102,7 @@ def keyrings_and_badges():
 # this route points to the collectibles product page, which displays all the collectibles products in the database
 @app.route('/collectibles')
 def collectibles():
-    products = Product.query.filter_by(product_category_id=3)
+    products = Product.query.filter_by(product_category_id=4)
     return render_template("collectibles.html", title="Collectibles", products=products)
 
 
@@ -110,7 +110,14 @@ def collectibles():
 @app.route('/games')
 def games():
     products = Product.query.filter_by(product_category_id=2)
-    return render_template("games.html", title="Games", products=products)
+    for product in products:
+        id = str(product.id)
+        print(id)
+        # images = Image.query.filter_by(id=product.image_id)
+        # for image in images:
+        #     image_name = Image.query.filter_by(id=product.image_id)
+        #     print(image.name)
+    return render_template("games.html", title="Games", products=products, id=id, )
 
 
 # This route points to a page which displays all products in the database
