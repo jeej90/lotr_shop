@@ -71,6 +71,7 @@ h2 {
 
 .navbar ul li ul {
     display: block;
+    float: none;
     display: none;
     position: absolute;
     text-decoration: none;
@@ -84,6 +85,16 @@ h2 {
 .navbar ul li ul li {
     background: #272537;
 }
+
+.navbar ul li ul li a {
+  float: none;
+  color: #FFFFFF;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
 
 .active, .navbar ul li:hover {
     background: #DAA520;
