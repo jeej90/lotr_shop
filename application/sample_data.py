@@ -1,6 +1,6 @@
-<<<<<<< HEAD
+
 from application import db
-from application.models import Customer, Address, RegisteredUser, Product, Size, ProductCategory, Colour
+from application.models import Customer, Address, RegisteredUser, Product, Size, Image, ProductCategory, Colour
 
 # PRODUCT LIST
 
@@ -95,4 +95,37 @@ from sqlalchemy import update
 # # )
 # # db.session.add(image_product_1)
 # # db.session.commit()
+
+# # Images
+#
+# img1 = Image(name="1.clothes.aragorn.jpg")
+# img2 = Image(name="2.keyring.arwen.jpg")
+# img3 = Image(name="3.clothes.gandalf.webp")
+# img4 = Image(name="6.keyring.oneringbadge.jpg")
+# img5 = Image(name="7.keyring.oneringkeyring.jpg")
+# img6 = Image(name="8.keyring.frodo.jpg")
+# img7 = Image(name="9.keyring.lorienleaf.jpg")
+# img8 = Image(name="13.games.lotrmonopolyjpg")
+# img9 = Image(name="14.games.chessbattle.jpg")
+# img10 = Image(name="15.games.chesslotrdeluxe.jpg")
+# img11 = Image(name="16.games.lotrcards.jpg")
+# img12 = Image(name="17.games.hexagonteaser.jpg")
+# img13 = Image(name="18.games.heroes1000p.jpg")
+# images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13]
+# db.session.add_all(images)
+# db.session.commit()
+
+
+# images = Image.query.filter_by(id=1)
+# print(images)
+
+products = Product.query.filter_by(id=1)
+for product in products:
+    print(product.name,
+          product.description,
+          product.full_price,
+          product.image_id)
+    image = Image.query.filter_by(id=product.image_id)
+    for i in image:
+        print(i.name)
 

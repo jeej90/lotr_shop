@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, session
 from application import app, db, bcrypt
 from application.forms import RegistrationForm, LoginForm
 from application.models import RegisteredUser, Product, Image
@@ -70,24 +70,21 @@ def login():
 def product(id):
     # products = Product.query.all()
     products = Product.query.filter_by(id=id)
-    image_name = session.query(Image)
-    image_url_add = '"{{ url_for(\'static', filename=\'images/product_images/' + image_name + ' )}}"'
     for product in products:
-        print(product.name, product.description, product.full_price)
-    for attr, value in image.name():
-        image_name = q.filter(getattr(Image, attr))
+        print(product.name, product.description, product.full_price, product.image_id)
+        image = Image.query.filter_by(id=product.image_id)
+        for i in image:
+            print(i.name)
     return render_template("product.html",
-                           image_url=image.name,
+                           image_name=i.name,
                            name=product.name,
                            description=product.description,
                            price=product.full_price,
                            id=product)
 
-q = session.query(myClass)
-for attr, value in web_dict.items():
-    q = q.filter(getattr(myClass, attr).like("%%%s%%" % value))
 
-# This route points to a product category page, it queries and filters results based on category id
+# image_url = "{{ url_for('static', filename ='images/product_images/" + image_name + "') }}"
+
 @app.route('/')
 @app.route('/clothes')
 def clothes():
