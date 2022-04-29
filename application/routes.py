@@ -121,11 +121,13 @@ def product(id):
                            product_id=id)
 
 
-def cart_items(item1, item2):
-    if isinstance(item1, list) and isinstance(item2, list):
-        return item1 + item2
-    if isinstance(item1, dict) and isinstance(item2, dict):
-        return dict(list(item1.item() + item2.item()))
+# def cart_items(item1, item2):
+#     print(type(item1))
+#     print(type(item2))
+#     if isinstance(item1, list) and isinstance(item2, list):
+#         return item1 + item2
+#     if isinstance(item1, dict) and isinstance(item2, dict):
+#         return dict(list(item1.item() + item2.item()))
 
 
 @app.route("/add", methods=['POST'])
@@ -138,14 +140,18 @@ def add_to_cart():
         if product_id and quantity and request.method == "POST":
             CartItem = {product_id: {'name': product.name, 'price': float(product.full_price), 'quantity': quantity}}
             if 'Cart' in session:
-                print(session['Cart'])
+                cart = session['Cart']
+                print(cart)
                 if product_id in session['Cart']:
-                    for key, item in session['Cart'].items():
+                    for key, item in session['Cart']:
                         if int(key) == int(product_id):
                             session.modified = True
                             item['quantity'] += 1
                 else:
-                    session['Cart'] = cart_items(session['Cart'], CartItem)
+                    # session['Cart'] = cart_items(session['Cart'], CartItem)
+                    current_cart = session['Cart']
+                    current_cart.update(CartItem)
+                    session['Cart'] = current_cart
                     return redirect('cart.html')
             else:
                 session['Cart'] = CartItem
