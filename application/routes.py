@@ -12,6 +12,10 @@ def home():
     products = Product.query.all()
     return render_template("home.html", title="Lord of the Rings Emporium", products=products)
 
+@app.route('/home2')
+def home2():
+    return render_template("home2.html", title="Lord of the Rings Emporium")
+
 
 @app.route('/')
 @app.route('/about')
