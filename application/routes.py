@@ -64,9 +64,32 @@ def login():
     return render_template('login.html', title='Login', form=form)
 
 
+@app.route("/adminlogin", methods=['GET', 'POST'])
+def admin_login():
+    # session["logged_in"] = True
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = AdminLogin()
+    if form.validate_on_submit():
+        admin = Administrator.query.filter_by(user_name=form.user_name.data).first()
+        password = Administrator.query.filter_by(password=form.password.data).first()
+        if admin and password:
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('admin'))
+        else:
+            flash('Login unsuccessful. Please check username and password')
+    return render_template('admin_login.html', title='Admin login', form=form)
+
+
+@app.route("/admin")
+def admin():
+    return render_template("admin.html")
+
+
 @app.route("/logout")
 def logout():
     logout_user()
+    # session.clear()
     return redirect(url_for('home'))
 
 

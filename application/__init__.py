@@ -23,9 +23,9 @@ login_manager = LoginManager(app)
 from flask_admin import Admin
 admin = Admin(app)
 
-from application.models import Administrator
-from flask_admin.contrib.sqla import ModelView
+from application.models import Administrator, MyModelView
+# from flask_admin.contrib.sqla import ModelView
 
-admin.add_view(ModelView(Administrator, db.session))
+admin.add_view(MyModelView(Administrator, db.session))
 
 from application import routes

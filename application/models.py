@@ -1,5 +1,6 @@
 import login as login
 from application import db, login_manager
+from flask import session, abort
 from datetime import datetime
 from flask_login import UserMixin, current_user, login_user
 from flask_admin import Admin
@@ -129,6 +130,20 @@ class Staff(db.Model):
     start_date = db.Column(db.DATE, nullable=True)
     address_id = db.Column(db.Integer, db.ForeignKey('address.id'), nullable=False)
     staff_address = db.relationship('Address', backref='staff', uselist=False)
+
+
+# @login.user_loader
+# def load_admin(id):
+#     return Administrator.query.get(id)
+
+
+class MyModelView(ModelView):
+    def is_accessible(self):
+        # return current_user.is_authinticated
+        if "logged_in" in session:
+            return True
+        else:
+            abort(403)
 
 
 
