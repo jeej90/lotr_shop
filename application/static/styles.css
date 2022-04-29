@@ -251,7 +251,7 @@ footer {
 /* Mya added margin-bottom to create space between each line of box*/
 .product-box{
     background: #f3e5d8;
-    width: 300px;
+    width: 400px;
     height: 500px;
     margin: auto;
     margin-bottom: 20px;
@@ -309,9 +309,11 @@ m=this ends the block for multiple images*/
 
 .product-title{
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
+  font-size: 25px;
   text-align: left;
   line-height: 1.2;
+  margin-bottom:0;
+  padding-bottom: 10px;
 }
 
 .product-price{
@@ -319,6 +321,8 @@ m=this ends the block for multiple images*/
   font-size: 20px;
   text-align: left;
   font-weight: bold;
+  margin-top: 0;
+  padding-top: 10px;
 }
 
 .product-description{

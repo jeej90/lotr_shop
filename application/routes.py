@@ -226,7 +226,7 @@ def clear_cart():
 @app.route('/')
 @app.route('/clothes')
 def clothes():
-    products = Product.query.filter_by(product_category_id=2)
+    products = Product.query.filter_by(product_category_id=1)
     for product in products:
         print(product.image)
     return render_template("clothes.html", title="Clothes", products=products, product_image=product.image)
@@ -235,7 +235,7 @@ def clothes():
 # this route points to the keyrings product page, which displays all the keyring products in the database
 @app.route('/keyrings')
 def keyrings_and_badges():
-    products = Product.query.filter_by(product_category_id=2)
+    products = Product.query.filter_by(product_category_id=3)
     for product in products:
         print(product.image)
     return render_template("keyrings_and_badges.html", title="Keyrings & Badges", products=products, product_image=product.image)
@@ -244,7 +244,7 @@ def keyrings_and_badges():
 # this route points to the collectibles product page, which displays all the collectibles products in the database
 @app.route('/collectibles')
 def collectibles():
-    products = Product.query.filter_by(product_category_id=2)
+    products = Product.query.filter_by(product_category_id=4)
     for product in products:
         print(product.image)
     return render_template("collectibles.html", title="Collectibles", products=products, product_image=product.image)
