@@ -43,7 +43,7 @@ class Address(db.Model):
     postcode = db.Column(db.String(8), nullable=False)
 
     def __repr__(self):
-        return f"Address('{self.address_line1}', '{self.address_line2}', '{self.address_line3}', '{self.county}', '{self.postcode}')"
+        return f"{self.address_line1}, {self.address_line2}, {self.county}, {self.postcode}"
 
 
 # JeJe: added unique=True for fields that need to be unique
@@ -58,7 +58,7 @@ class RegisteredUser(db.Model, UserMixin):
     customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=True)
 
     def __repr__(self):
-        return f"Registered User('{self.user_name}', '{self.email}')"
+        return f"Registered User({self.user_name}, {self.email})"
 
 
 # JeJe: added product classes
@@ -83,7 +83,7 @@ class Product(db.Model):
 
 
     def __repr__(self):
-        return f"Product('{self.name}', '{self.description}', {self.full_price})"
+        return f"Product({self.name}, {self.description}, {self.full_price})"
 
 
 class ProductCategory(db.Model):
@@ -121,6 +121,7 @@ class Image(db.Model):
     def __repr__(self):
         return f"{self.name}"
 
+
 class Administrator(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(50), unique=True, nullable=False)
@@ -141,7 +142,7 @@ class Staff(db.Model):
     staff_address = db.relationship('Address', backref='staff', uselist=False)
 
     def __repr__(self):
-        return f"Staff('{self.first_name} {self.last_name}', '{self.job_title}')"
+        return f"{self.first_name} {self.last_name}, {self.job_title}"
 
 # @login.user_loader
 # def load_admin(id):

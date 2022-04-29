@@ -104,12 +104,12 @@ from sqlalchemy import update
 
 # # Images
 #
-# img1 = Image(name="1.clothes.aragorn.jpg")
-# img2 = Image(name="2.keyring.arwen.jpg")
-# img3 = Image(name="3.clothes.gandalf.webp")
-# img4 = Image(name="6.keyring.oneringbadge.jpg")
-# img5 = Image(name="7.keyring.oneringkeyring.jpg")
-# img6 = Image(name="8.keyring.frodo.jpg")
+# img1 = Image(name="001.clothes.aragorn.jpg")
+# img2 = Image(name="002.keyring.arwen.jpg")
+# img3 = Image(name="003.clothes.gandalf.jpg")
+# img4 = Image(name="04.keyring.oneringbadge.jpg")
+# img5 = Image(name="05.keyring.oneringkeyring.jpg")
+# img6 = Image(name="06.keyring.frodo.jpg")
 # img7 = Image(name="9.keyring.lorienleaf.jpg")
 # img8 = Image(name="13.games.lotrmonopolyjpg")
 # img9 = Image(name="14.games.chessbattle.jpg")
