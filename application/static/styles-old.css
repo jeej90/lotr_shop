@@ -10,7 +10,6 @@ h1 {
   line-height: 20pt;
   color: #DAA520;
   font-size: 40px;
-
 }
 
 h2 {
@@ -20,11 +19,9 @@ h2 {
   line-height: 20pt;
   color: #DAA520;
   font-size: 25px;
-
 }
 
 .header {
-  width: 100%;
   height: 280px;
   position: absolute;
   top: 0;
@@ -32,31 +29,17 @@ h2 {
   right: 0;
   text-align: center;
   background: black;
-  vertical-align: middle;
-  height:350px;
-  width: 100%;
-  overflow:hidden;
-
-}
-
-.shopping-basket {
-    position: absolute;
-    right: 8%;
-    margin-top:-60px;
 }
 
 .navbar {
     height: 70px;
-    margin-top:350px;
+    margin-top:280px;
     background-color: #272537;
     text-align: center;
     font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
     color: #FFFFFF;
     font-size: 25px;
     position: relative;
-    width: 100%;
-    /*padding: 0 25px;
-
     /*position: relative;
    display: flex;
    justify-content: space-between;
@@ -69,9 +52,7 @@ h2 {
 }
 
 .navbar ul {
-   /*width: 100%;*/
    display: inline-flex;
-   text-align: center;
    list-style: none;
    color: #FFFFFF;
 }
@@ -95,59 +76,39 @@ h2 {
     position: absolute;
     text-decoration: none;
     color: #FFFFFF;
-    z-index: 100;
 }
 
 .navbar ul li:hover ul {
-    display: inline-flex;
     display: block;
-    width: 250px;
-    margin: 7px;
-    padding: 7px;
 }
 
 .navbar ul li ul li {
-    float: none;
-    color: #FFFFFF;
-    text-decoration: none;
-    border-radius: 10px;
-    /*padding: 12px 16px;*/
     background: #272537;
 }
 
 .navbar ul li ul li a {
-  /*float: none;*/
+  float: none;
   color: #FFFFFF;
   padding: 12px 16px;
   text-decoration: none;
-  border-radius: 10px;
   display: block;
   text-align: left;
-
 }
 
 
-.active, .navbar ul li a:hover {
-    float: none;
-    color: #FFFFFF;
-    padding: 4px 4px;
-    text-decoration: none;
-    display: block;
+.active, .navbar ul li:hover {
     background: #DAA520;
     border-radius: 10px;
     position: relative;
-
- }
+}
 
 .navbar-nav{
     text-align: right;
-    font-size: 22px;
+    font-size: 20px;
     font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
-    padding-right: 20px;
 }
 
 body {
-  margin: 0px;
   background-image: url('images/lotr_map.jpeg');
   text-align: center;
   font-size: 15pt;
@@ -186,7 +147,6 @@ footer {
     position: relative;
     padding: 12px 12px 12px 0;
 }
-
 .content{
     width: 1200px;
     height: auto;
@@ -320,4 +280,3 @@ small {
     width: 100%;
     margin-top: 0;
   }
-
