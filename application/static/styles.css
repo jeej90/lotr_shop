@@ -61,6 +61,7 @@ h2 {
 .navbar {
     height: 70px;
     margin-top:350px;
+    margin-top:350px;
     background-color: #272537;
     text-align: center;
     font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
@@ -82,12 +83,14 @@ h2 {
 }
 
 .navbar ul {
+   position: relative;
    /*width: 100%;*/
    display: inline-flex;
    text-align: center;
    list-style: none;
    color: #FFFFFF;
 }
+
 
 .navbar ul li {
     /*width: 150px;

@@ -220,31 +220,28 @@ def clear_cart():
 @app.route('/')
 @app.route('/clothes')
 def clothes():
-    products = Product.query.filter_by(product_category_id=1)
+    products = Product.query.filter_by(product_category_id=2)
     for product in products:
-        id = str(product.id)
-        print(id)
-    return render_template("clothes.html", title="Clothes", products=products, id=id)
+        print(product.image)
+    return render_template("clothes.html", title="Clothes", products=products, product_image=product.image)
 
 
 # this route points to the keyrings product page, which displays all the keyring products in the database
 @app.route('/keyrings')
 def keyrings_and_badges():
-    products = Product.query.filter_by(product_category_id=3)
+    products = Product.query.filter_by(product_category_id=2)
     for product in products:
-        id = str(product.id)
-        print(id)
-    return render_template("keyrings_and_badges.html", title="Keyrings & Badges", products=products, id=id)
+        print(product.image)
+    return render_template("keyrings_and_badges.html", title="Keyrings & Badges", products=products, product_image=product.image)
 
 
 # this route points to the collectibles product page, which displays all the collectibles products in the database
 @app.route('/collectibles')
 def collectibles():
-    products = Product.query.filter_by(product_category_id=4)
+    products = Product.query.filter_by(product_category_id=2)
     for product in products:
-        id = str(product.id)
-        print(id)
-    return render_template("collectibles.html", title="Collectibles", products=products, id=id)
+        print(product.image)
+    return render_template("collectibles.html", title="Collectibles", products=products, product_image=product.image)
 
 
 # this route points to the games product page, which displays all the games products in the database
@@ -252,21 +249,18 @@ def collectibles():
 def games():
     products = Product.query.filter_by(product_category_id=2)
     for product in products:
-        id = str(product.id)
-        print(id)
-        # images = Image.query.filter_by(id=product.image_id)
-        # for image in images:
-        #     image_name = Image.query.filter_by(id=product.image_id)
-        #     print(image.name)
-    return render_template("games.html", title="Games", products=products, id=id)
+        print(product.image)
+    return render_template("games.html", title="Games", products=products, product_image=product.image)
 
 
 # This route points to a page which displays all products in the database
 @app.route('/')
 @app.route('/products')
 def products():
-    products = Product.query.all()
-    return render_template("products.html", title="Products", products=products)
+    products = Product.query.filter_by(product_category_id=2)
+    for product in products:
+        print(product.image)
+    return render_template("products.html", title="Products", products=products, product_image=product.image)
 
 #this route is for displaying multiple images, do not use unless we decide to use multiple images
 # @app.route('/chess')

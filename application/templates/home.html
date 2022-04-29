@@ -1,15 +1,19 @@
 {% extends "layout.html" %}
 {% block body_content %}
 <div class="container body-box">
+<!--    <div class = "" style="background-image:"></div>-->
   <img src="{{url_for('static', filename='images/carousel1.jpeg')}}" style="width:100%;">
     </br>
     </br>
     {% for product in products %}
-    <div class="container product-box container">
-        <h3 class="product-title">{{ product.name }}</h3>
+    {% set product_id = product.id %}
+    {% set image = product.image %}
+    <div class="product-box container">
+        <h3 class="product-title"><a href="product/{{product_id}}" style="color:#B8860B;">{{ product.name }}</a></h3>
+        <img src= "{{ url_for('static', filename ='images/product_images/') }}{{image}}" width="100px" height="100px">
         <p class="product-description">{{ product.description }}</p>
         <p class="product-price">£{{ product.full_price }}</p>
-        <p class="more details">{{ id }}</p>
+        <p class="more info" ><a href="product/{{product_id}}"> Click for more information</a></p>
     </div>
     {% endfor %}
 </div>

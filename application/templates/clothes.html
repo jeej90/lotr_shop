@@ -3,14 +3,14 @@
 <div class="container body-box">
     <h2>Clothes</h2>
     {% for product in products %}
+    {% set product_id = product.id %}
+    {% set image = product.image %}
     <div class="product-box container">
-        <h3 class="product-title"><a href="{{'product/' + id }}" style="color:#B8860B;">{{ product.name }}</a></h3>
-        {% for image in images %}
-        <img src= "{{ url_for('static', filename ='images/product_images/' + image_name) }}">
-        {% endfor %}
+        <h3 class="product-title"><a href="product/{{product_id}}" style="color:#B8860B;">{{ product.name }}</a></h3>
+        <img src= "{{ url_for('static', filename ='images/product_images/') }}{{image}}" width="100px" height="100px">
         <p class="product-description">{{ product.description }}</p>
         <p class="product-price">£{{ product.full_price }}</p>
-        <p class="more info" ><a href="{{'product/' + id }}"> Click for more information</a></p>
+        <p class="more info" ><a href="product/{{product_id}}"> Click for more information</a></p>
     </div>
     {% endfor %}
 </div>

@@ -73,6 +73,7 @@ class Product(db.Model):
     available_stock = db.Column(db.Integer)
     reserved_stock = db.Column(db.Integer)
     sold_stock = db.Column(db.Integer)
+    # image = db.Column(db.String(200), nullable=False)
     # size_id = db.Column(db.Integer, db.ForeignKey('size.id'), nullable=True)
     colour_id = db.Column(db.Integer, db.ForeignKey('colour.id'), nullable=True)
     # stock_id = db.Column(db.Integer, db.ForeignKey('stock.id'), nullable=True)
