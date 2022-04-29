@@ -3,8 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='images/one_ring_favicon.ico') }}">
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
     <title>{{Title}}</title>
 
         <!-- Bootstrap CSS -->
@@ -16,46 +14,19 @@
 
 <main>
         <div class="header">
-            <br>
-                <div class="navbar-nav">
-              {% if current_user.is_authenticated %}
-                <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
-              {% else %}
-                <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
-<!--                <a class="nav-item nav-link" href="{{ url_for('register') }}">/Register</a>-->
-              {% endif %}
-        </div>
-            <div class="shopping-basket"><a href="/"><img src="{{url_for('static', filename='images/basket.png')}}" alt="Shopping basket icon" width="100" height="100"></a></div>
-
     <h1>The Lord of the Rings Emporium</h1>
-            <br>
+        <br>
             <a href="/"><img src="{{url_for('static', filename='images/One_Ring_Blender_Render.png')}}" alt="One Ring Logo" width="100" height="100"></a>
         <br>
         <br>
         <h2>~ One shop to rule them all ~</h2>
         <br>
-        <br>
+
         </div>
         <div class="navbar">
               <ul>
                 <li><a href="/">Home</a></li>
-<!--<<<<<<< HEAD-->
-<!--                  <li><div class="dropdown">-->
-<!--    <button class="dropbtn">Shop-->
-<!--        <i class="fa fa-caret-down"></i>-->
-<!--        </button>-->
-<!--    <div class="dropdown-content">-->
-<!--        <ul>-->
-<!--            <li><a href="{{ url_for('collectibles') }}">Collectibles</a></li>-->
-<!--            <li><a href="{{ url_for('games') }}">Games</a></li>-->
-<!--            <li><a href="{{ url_for('keyrings_and_badges') }}">Keyrings & Badges</a></li>-->
-<!--        </ul>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--   </li>-->
-<!--                  <li><a href="/about">About Us</a></li>-->
-<!--=======-->
-                <li><a>Shop</a>
+                <li><a href="#">Shop</a>
                    <ul>
                         <li><a href="/clothes">Clothes</a></li>
                         <li><a href="/games">Games</a></li>
@@ -65,20 +36,16 @@
                 <li><a href="/about">About Us</a></li>
                   <li><a href="/contact">Contact</a></li>
                   <li><a href="/faq">FAQ</a></li>
-
               </ul>
         </div>
-<!--<<<<<<< HEAD-->
-<!--                      <div class="navbar-nav">-->
-<!--              {% if current_user.is_authenticated %}-->
-<!--                <a class="navbar-nav nav-link" href="{{ url_for('logout') }}">Logout</a>-->
-<!--              {% else %}-->
-<!--                <a class="navbar-nav nav-link" href="{{ url_for('login') }}">Login</a>-->
-<!--&lt;!&ndash;                <a class="nnavbar-nav nav-link" href="{{ url_for('register') }}">Register</a>&ndash;&gt;-->
-<!--              {% endif %}-->
-<!--              <a href="{{url_for('get_cart')}}" class="navbar-nav nav-link"> Cart ({{ session['Cart']|length }}) </a>-->
-<!--              </div>-->
-<!--=======-->
+        <div class="navbar-nav">
+              {% if current_user.is_authenticated %}
+                <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+              {% else %}
+                <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
+                <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
+              {% endif %}
+        </div>
 
 </main>
     <div>

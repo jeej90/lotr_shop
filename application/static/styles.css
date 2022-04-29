@@ -23,6 +23,7 @@ h1 {
   line-height: 20pt;
   color: #DAA520;
   font-size: 40px;
+
 }
 
 h2 {
@@ -32,28 +33,44 @@ h2 {
   line-height: 20pt;
   color: #DAA520;
   font-size: 25px;
+
 }
 
 .header {
+  width: 100%;
   height: 280px;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   text-align: center;
-  /*background: #003300;*/
   background: black;
+  vertical-align: middle;
+  height:350px;
+  width: 100%;
+  overflow:hidden;
+
+}
+
+.shopping-basket {
+    position: absolute;
+    right: 8%;
+    margin-top:-60px;
 }
 
 .navbar {
-    margin-top:280px;
+    height: 70px;
+    margin-top:350px;
     background-color: #272537;
     text-align: center;
     font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
+    color: #FFFFFF;
+    font-size: 25px;
     position: relative;
+    width: 100%;
+    /*padding: 0 25px;
 
-
-   /*position: relative;
+    /*position: relative;
    display: flex;
    justify-content: space-between;
    align-items: center;
@@ -65,55 +82,104 @@ h2 {
 }
 
 .navbar ul {
+   /*width: 100%;*/
    display: inline-flex;
+   text-align: center;
    list-style: none;
    color: #FFFFFF;
 }
 
 .navbar ul li {
-    width: 150px;
-    margin: top;
+    /*width: 150px;
+    margin: top;*/
+    width: 250px;
+    margin: 0px;
     padding: 0px;
-
 }
 
 .navbar ul li a {
+    display: block;
     text-decoration: none;
     color: #FFFFFF;
-    float: bottom;
+    /*float: bottom;*/
 
 }
 
-.active, .navbar ul li:hover, .dropdown:hover .dropbtn:hover {
+/*.active, .navbar ul li:hover, .dropdown:hover .dropbtn:hover {
     background: #DAA520;
-    border-radius: 3px;
+    border-radius: 3px;*/
+
+.navbar ul li ul {
+    display: block;
+    float: none;
+    display: none;
+    position: absolute;
+    text-decoration: none;
+    color: #FFFFFF;
+    z-index: 100;
 }
+
+.navbar ul li:hover ul {
+    display: inline-flex;
+    display: block;
+    width: 250px;
+    margin: 7px;
+    padding: 7px;
+}
+
+.navbar ul li ul li {
+    float: none;
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 10px;
+    /*padding: 12px 16px;*/
+    background: #272537;
+}
+
+.navbar ul li ul li a {
+  /*float: none;*/
+  color: #FFFFFF;
+  padding: 12px 16px;
+  text-decoration: none;
+  border-radius: 10px;
+  display: block;
+  text-align: left;
+
+}
+
+
+.active, .navbar ul li a:hover {
+    float: none;
+    color: #FFFFFF;
+    padding: 4px 4px;
+    text-decoration: none;
+    display: block;
+    background: #DAA520;
+    border-radius: 10px;
+    position: relative;
+
+ }
 
 .navbar-nav{
     text-align: right;
-    font-size: 15px;
+    font-size: 22px;
+    font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
+    padding-right: 20px;
 }
 
-.dropdown {
-  float: bottom;
-  overflow: hidden;
-  /*position: relative;
-  display: inline-block;*/
-}
-
-.dropdown .dropbtn {
+/* body {
+  margin: 0px;
+  background-image: url('images/lotr_map.jpeg');
+  text-align: center;
   font-size: 15pt;
-  border: none;
-  outline: none;
   color: #FFFFFF;
   background-color: #272537;
   font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
   /*added this in just now ca*/
-  width: 150px;
+  /*width: 150px;
   margin: 0px;
   padding: 0px;
-
-}
+} */
 
 /*.navbar a:hover, .dropdown:hover .dropbtn {
   background-color: red;
@@ -171,6 +237,7 @@ footer {
     position: relative;
     padding: 12px 12px 12px 0;
 }
+
 .content{
     width: 1200px;
     height: auto;
@@ -404,6 +471,7 @@ margin-left:-15px}
     width: 100%;
     margin-top: 0;
   }
+
 
  /*christelle and mya added subnav css
 
