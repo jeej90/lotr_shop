@@ -93,6 +93,12 @@ def logout():
     return redirect(url_for('home'))
 
 
+@app.route("/adminlogout")
+def admin_logout():
+    session["logged_in"] = True
+    session.clear()
+    return redirect(url_for('home'))
+
 # Dynamic route that creates a page for each product: it filters by  id and returns desired rows of data from the db
 # The route points to the template HTML product page
 #@app.route('/')

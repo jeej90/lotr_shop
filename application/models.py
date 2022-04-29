@@ -1,9 +1,9 @@
 import login as login
 from application import db, login_manager
-from flask import session, abort
+from flask import session, redirect, url_for, abort
 from datetime import datetime
 from flask_login import UserMixin, current_user, login_user
-from flask_admin import Admin
+from flask_admin import Admin, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
 from sqlalchemy import update
 # from sqlalchemy import declarative_base
@@ -31,7 +31,7 @@ class Customer(db.Model):
 
     # method that prints our object as a string
     def __repr__(self):
-        return f"Customer('{self.first_name}', '{self.last_name}', '{self.email}', '{self.contact_no}')"
+        return f"Customer('{self.first_name} {self.last_name}', '{self.email}', '{self.contact_no}')"
 
 
 class Address(db.Model):
@@ -78,6 +78,9 @@ class Product(db.Model):
     # stock_id = db.Column(db.Integer, db.ForeignKey('stock.id'), nullable=True)
     product_category_id = db.Column(db.Integer, db.ForeignKey('product_category.id'), nullable=True)
     image_id = db.Column(db.Integer, db.ForeignKey('image.id'), nullable=True)
+    category = db.relationship('ProductCategory', backref='product')
+    image = db.relationship('Image', backref='product')
+
 
     def __repr__(self):
         return f"Product('{self.name}', '{self.description}', {self.full_price})"
@@ -86,6 +89,9 @@ class Product(db.Model):
 class ProductCategory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     category = db.Column(db.String(50), nullable=False)
+
+    def __repr__(self):
+        return f"{self.category}"
 
 
 class Size(db.Model):
@@ -112,6 +118,8 @@ class Image(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
 
+    def __repr__(self):
+        return f"{self.name}"
 
 class Administrator(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -119,6 +127,7 @@ class Administrator(db.Model):
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
     staff_id = db.Column(db.Integer, db.ForeignKey('staff.id'), nullable=True)
+    admin_staff = db.relationship('Staff', backref='staff')
 
 
 class Staff(db.Model):
@@ -131,6 +140,8 @@ class Staff(db.Model):
     address_id = db.Column(db.Integer, db.ForeignKey('address.id'), nullable=False)
     staff_address = db.relationship('Address', backref='staff', uselist=False)
 
+    def __repr__(self):
+        return f"Staff('{self.first_name} {self.last_name}', '{self.job_title}')"
 
 # @login.user_loader
 # def load_admin(id):
@@ -138,12 +149,24 @@ class Staff(db.Model):
 
 
 class MyModelView(ModelView):
+    column_display_pk = True  # optional, but I like to see the IDs in the list
+    column_hide_backrefs = False
     def is_accessible(self):
         # return current_user.is_authinticated
         if "logged_in" in session:
             return True
         else:
-            abort(403)
+            # abort(403)
+            return redirect(url_for('admin_login'))
 
+
+class MyAdminView(AdminIndexView):
+    def is_accessible(self):
+        # return current_user.is_authinticated
+        if "logged_in" in session:
+            return True
+        else:
+            # abort(403)
+            return redirect(url_for('admin_login'))
 
 
