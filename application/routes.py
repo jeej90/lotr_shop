@@ -1,8 +1,10 @@
+import secrets
+
 from flask import render_template, flash, redirect, url_for, request, session, current_app
 from application import app, db, bcrypt
 from application.forms import RegistrationForm, LoginForm, AdminLogin
-from application.models import RegisteredUser, Product, Image, Administrator, Staff
-from flask_login import login_user, current_user, logout_user
+from application.models import RegisteredUser, Product, Image, Administrator, Staff, Order
+from flask_login import login_user, current_user, logout_user, login_required
 from flask_admin import Admin
 
 
@@ -225,6 +227,46 @@ def clear_cart():
         return redirect(url_for('get_cart'))
     except Exception as e:
         print(e)
+
+
+# Mya and Alice - order confirmation
+
+# created a route to get the order details and input into order table in the database
+@app.route('/getorder')
+@login_required
+def get_order():
+    if current_user.is_authenticated:
+        customer_id = current_user.id
+        #can we get rid of invoice? Use the order_id as the invoice number
+        invoice = secrets.token_hex(5)
+        try:
+            # possibly remove invoice and replace with order_id
+            order = Order(invoice=invoice, customer_id=customer_id, orders=session
+                                  ['Shoppingcart'])
+            db.session.add(order)
+            db.session.commit
+            session.pop('Shoppingcart')
+            flash('Your order has been sent successfully', 'success')
+            return redirect(url_for('home'))
+        except Exception as e:
+            print(e)
+            flash('Some thing went wrong while getting your order details', 'danger')
+            return redirect(url_for('getCart'))
+
+
+@app.route('/orders/<invoice>')
+@login_required
+def orders(invoice):
+    if current_user.is_authenticated:
+        orderTotal = 0
+        customer_id = current_user.id
+        customer = Register.query.filter_by(id=customer_id).first()
+        orders = CustomerOrder.query.filter_by(customer_id=customer_id).first()
+        for _key, product in orders.orders.items():
+            orderTotal += float(product['price']) + int(product['quantity'])
+    else:
+        return redirect(url_for('customerLogin'))
+    return render_template('customer/login.html', invoice=invoice, orderTotal=orderTotal, customer=customer,orders=orders)
 
 
 @app.route('/')

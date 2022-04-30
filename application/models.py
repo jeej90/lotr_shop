@@ -172,3 +172,41 @@ class MyAdminView(AdminIndexView):
             return redirect(url_for('admin_login'))
 
 
+# Mya and Alice order confirmation - creating following classes: order_status, customerorder
+
+#creating customer order table
+class JsonEncodedDict(db.TypeDecorator):
+    impl = db.Text
+
+    def process_bind_param(self, value, dialect):
+        if value is None:
+            return '{}'
+        else:
+            return json.dumps(value)
+    def process_result_value(selfself, value, dialect):
+        if value is None:
+            return {}
+        else:
+            return json.loads(value)
+
+class Order(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    invoice = db.Column(db.String(20), unique=True, nullable=False)
+    # should the status be called order_status_id and be a foreign key with the order_status_id from the order_status table??
+    status = db.Column(db.String(30), default='Pending', nullable=False)
+    # should the customer_id be a foreign key with the customer_id from the customer table??
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=True)
+    customer = db.relationship('Customer', backref='customerorder', uselist=False)
+    order_date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+    orders = db.Column(JsonEncodedDict)
+
+
+    def __repr__(self):
+        return'<CustomerOrder %r>' % self.invoice
+
+class OrderStatus(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    order_status = db.Column(db.String(30), unique=True, nullable=False)
+
+
+db.create_all()

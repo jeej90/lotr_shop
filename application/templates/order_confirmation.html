@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block body_content %}
+<div class="container body-box">
+    <div class="row">
+        <div>
+        <table>
+            <thead>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </thead>
+            <tbody>
+                {% for key, product in session['Cart'].items() %}
+                <tr>
+                    <td>{{product.name}}</td>
+                    <form action="{{url_for('update_cart', code=key)}}" method="post">
+                    <td>£{{product.price}}</td>
+                    <td> <input type="number" name="quantity" min="1" max="10" value="{{product.quantity}}"> </td>
+                    {% set subtotal = product.quantity|int * product.price|float  %}
+                    <td>{{ subtotal }}</td>
+                    <td><button type="submit">Update</button> </td>
+                </form>
+                    <td> <a href="{{url_for('delete_item', id=key)}}">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <table class="table table-sm">
+           <tr>
+               <td> <h5>Grand total: £{{ grand_total }}</h5> </td>
+                <td> <a href="{{ url_for('clear_cart') }}"> Clear cart</a> </td>
+           </tr>
+        </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
