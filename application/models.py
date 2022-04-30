@@ -17,7 +17,7 @@ def load_user(registered_user_id):
     return RegisteredUser.query.get(int(registered_user_id))
 
 
-# JeJe: added customer address relationship as one-to-one relationship
+# # JeJe: added customer address relationship as one-to-one relationship
 class Customer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(50), nullable=False)
@@ -33,7 +33,7 @@ class Customer(db.Model):
     def __repr__(self):
         return f"Customer('{self.first_name} {self.last_name}', '{self.email}', '{self.contact_no}')"
 
-
+#
 class Address(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     address_line1 = db.Column(db.String(50), nullable=False)
@@ -44,11 +44,11 @@ class Address(db.Model):
 
     def __repr__(self):
         return f"{self.address_line1}, {self.address_line2}, {self.county}, {self.postcode}"
-
-
-# JeJe: added unique=True for fields that need to be unique
-# JeJe: added nullable as True for customer_id
-# JeJe: added password attribute
+#
+#
+# # JeJe: added unique=True for fields that need to be unique
+# # JeJe: added nullable as True for customer_id
+# # JeJe: added password attribute
 class RegisteredUser(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(50), unique=True, nullable=False)
@@ -60,9 +60,9 @@ class RegisteredUser(db.Model, UserMixin):
     def __repr__(self):
         return f"Registered User({self.user_name}, {self.email})"
 
-
-# JeJe: added product classes
-
+#
+# # JeJe: added product classes
+#
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
@@ -81,8 +81,8 @@ class Product(db.Model):
     image_id = db.Column(db.Integer, db.ForeignKey('image.id'), nullable=True)
     category = db.relationship('ProductCategory', backref='product')
     image = db.relationship('Image', backref='product')
-
-
+#
+#
     def __repr__(self):
         return f"Product({self.name}, {self.description}, {self.full_price})"
 
@@ -103,18 +103,18 @@ class Size(db.Model):
 class Colour(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     colour = db.Column(db.String(50), nullable=False)
-
-
-# class Stock(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     available_stock = db.Column(db.String(200), nullable=False)
-#     reserved_stock = db.Column(db.Integer)
-#     sold_stock = db.Column(db.Integer)
-#     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=True)
 #
-#     def __repr__(self):
-#         return f"Stock('{self.available_stock}', '{self.reserved_stock}', {self.full_price})"
-
+#
+# # class Stock(db.Model):
+# #     id = db.Column(db.Integer, primary_key=True)
+# #     available_stock = db.Column(db.String(200), nullable=False)
+# #     reserved_stock = db.Column(db.Integer)
+# #     sold_stock = db.Column(db.Integer)
+# #     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=True)
+# #
+# #     def __repr__(self):
+# #         return f"Stock('{self.available_stock}', '{self.reserved_stock}', {self.full_price})"
+#
 class Image(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
