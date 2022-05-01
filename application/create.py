@@ -5,14 +5,15 @@ from application import db
 #     host='localhost',
 #     user='root',
 #     password='password')
-from application.models import Customer, Address, RegisteredUser, Product, Size, ProductCategory, Colour, Admin, Staff
+from application.models import Customer, Address, RegisteredUser, Product, Size, ProductCategory, Colour, Admin, Staff, Image
 
 # db.drop_all()
 # db.create_all()
+# db.session.commit()
 
 # foreign keys input first
 
-# size
+# # #size table
 # size_xs = Size(size="XS")
 # size_s = Size(size="S")
 # size_m = Size(size="M")
@@ -26,7 +27,7 @@ from application.models import Customer, Address, RegisteredUser, Product, Size,
 # # db.session.add(size_xs)
 #
 # db.session.commit()
-#
+# #
 # # product_category
 #
 # product_category_1 = ProductCategory(category="Clothes")

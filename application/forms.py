@@ -36,3 +36,14 @@ class AdminLogin(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
+
+class CustomerDetails(FlaskForm):
+    first_name = StringField('First Name', validators=[DataRequired(), Length(min=2, max=100)])
+    last_name = StringField('Last Name', validators=[DataRequired(), Length(min=2, max=100)])
+    email = StringField('Email', validators=[DataRequired(), Email(), Length(min=2, max=100)])
+    address1 = StringField('Address Line 1', validators=[DataRequired(), Length(min=2, max=100)])
+    address2 = StringField('Address Line 2')
+    address3 = StringField('Address Line 3')
+    address4 = StringField('County', validators=[DataRequired(), Length(min=2, max=100)])
+    address5 = StringField('Postcode', validators=[DataRequired(), Length(min=2, max=100)])
+    submit = SubmitField('Confirm Order')

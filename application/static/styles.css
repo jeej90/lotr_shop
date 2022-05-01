@@ -126,8 +126,8 @@ h2 {
     display: inline-flex;
     display: block;
     width: 250px;
-    margin: 7px;
-    padding: 7px;
+    margin: 2px;
+    padding: 2px;
 }
 
 .navbar ul li ul li {

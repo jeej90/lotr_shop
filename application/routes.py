@@ -2,8 +2,8 @@ import secrets
 
 from flask import render_template, flash, redirect, url_for, request, session, current_app
 from application import app, db, bcrypt
-from application.forms import RegistrationForm, LoginForm, AdminLogin
-from application.models import RegisteredUser, Product, Image, Administrator, Staff, Order
+from application.forms import RegistrationForm, LoginForm, AdminLogin, CustomerDetails
+from application.models import RegisteredUser, Product, Image, Administrator, Staff, Purchase, Customer, Address
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_admin import Admin
 
@@ -228,6 +228,25 @@ def clear_cart():
     except Exception as e:
         print(e)
 
+@app.route('/checkout', methods=['GET', 'POST'])
+def checkout():
+    if current_user.is_authenticated:
+        customer_id = current_user.id
+    form = CustomerDetails()
+    if form.validate_on_submit():
+        customer_info = Customer(first_name=form.first_name.data, last_name=form.last_name.data, email=form.email.data)
+        customer_address = Address(address_line1=form.address1.data, address_line2=form.address2.data, address_line3=form.address3.data, county=form.address4.data, postcode=form.address5.data,)
+        db.session.add(customer_info)
+        db.session.add(customer_address)
+        db.session.commit()
+        flash("Thank you")
+        return redirect(url_for('order_confirmed'))
+    return render_template('checkout.html', form=form)
+
+@app.route('/confirmed')
+def order_confirmed():
+    session.pop('Cart', default=None)
+    return render_template('confirmation.html')
 
 # Mya and Alice - order confirmation
 
