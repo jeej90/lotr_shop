@@ -56,6 +56,7 @@ def login():
     if form.validate_on_submit():
         user = RegisteredUser.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
+            session.pop('Cart', default=None)
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('home'))
@@ -89,7 +90,7 @@ def admin():
 @app.route("/logout")
 def logout():
     logout_user()
-    # session.clear()
+    session.pop('Cart', default=None)
     return redirect(url_for('home'))
 
 
@@ -175,11 +176,6 @@ def get_cart():
     return render_template('cart.html', grand_total=grand_total)
 
 
-# @app.route("/cart", methods=['GET', 'POST'])
-# def cart():
-#     return render_template("cart.html")
-
-
 @app.route('/updatecart/<int:code>', methods=['POST'])
 def update_cart(code):
     if 'Cart' not in session or len(session['Cart']) <= 0:
@@ -215,7 +211,10 @@ def delete_item(id):
 
 @app.route('/clearcart')
 def clear_cart():
+    if 'Cart' not in session or len(session['Cart']) <= 0:
+        return redirect(url_for('home'))
     try:
+        session.modified = True
         session.pop('Cart', None)
         flash('Your cart is empty.')
         return redirect(url_for('get_cart'))
