@@ -266,7 +266,7 @@ def orders(invoice):
             orderTotal += float(product['price']) + int(product['quantity'])
     else:
         return redirect(url_for('customerLogin'))
-    return render_template('customer/login.html', invoice=invoice, orderTotal=orderTotal, customer=customer,orders=orders)
+    return render_template('customer/login.html', invoice=invoice, orderTotal=orderTotal, customer=customer, orders=orders)
 
 
 @app.route('/')
