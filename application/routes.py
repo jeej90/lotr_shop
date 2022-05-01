@@ -263,7 +263,7 @@ def games():
 @app.route('/')
 @app.route('/products')
 def products():
-    products = Product.query.filter_by(product_category_id=2)
+    products = Product.query.all()
     for product in products:
         print(product.image)
     return render_template("products.html", title="Products", products=products, product_image=product.image)
