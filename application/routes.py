@@ -1,14 +1,16 @@
 from flask import render_template, flash, redirect, url_for, request, session, current_app
 from application import app, db, bcrypt
-from application.forms import RegistrationForm, LoginForm
-from application.models import RegisteredUser, Product
+from application.forms import RegistrationForm, LoginForm, AdminLogin
+from application.models import RegisteredUser, Product, Image, Administrator, Staff
 from flask_login import login_user, current_user, logout_user
+from flask_admin import Admin
 
 
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template("home.html", title="Lord of the Rings Emporium")
+    products = Product.query.all()
+    return render_template("home.html", title="Lord of the Rings Emporium", products=products)
 
 
 @app.route('/')
@@ -62,22 +64,56 @@ def login():
     return render_template('login.html', title='Login', form=form)
 
 
+@app.route("/adminlogin", methods=['GET', 'POST'])
+def admin_login():
+    # session["logged_in"] = True
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = AdminLogin()
+    if form.validate_on_submit():
+        admin = Administrator.query.filter_by(user_name=form.user_name.data).first()
+        password = Administrator.query.filter_by(password=form.password.data).first()
+        if admin and password:
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('admin'))
+        else:
+            flash('Login unsuccessful. Please check username and password')
+    return render_template('admin_login.html', title='Admin login', form=form)
+
+
+@app.route("/admin")
+def admin():
+    return render_template("admin.html")
+
+
 @app.route("/logout")
 def logout():
     logout_user()
+    # session.clear()
     return redirect(url_for('home'))
 
 
+@app.route("/adminlogout")
+def admin_logout():
+    session["logged_in"] = True
+    session.clear()
+    return redirect(url_for('home'))
+
 # Dynamic route that creates a page for each product: it filters by  id and returns desired rows of data from the db
 # The route points to the template HTML product page
-@app.route('/')
+#@app.route('/')
 @app.route('/product/<int:id>')
 def product(id):
     # products = Product.query.all()
     products = Product.query.filter_by(id=id)
     for product in products:
+        print(product.name, product.description, product.full_price, product.image_id)
+        image = Image.query.filter_by(id=product.image_id)
+        for i in image:
+            print(i.name)
         print(product.name, product.description, product.full_price, product.available_stock)
     return render_template("product.html",
+                           image_name=i.name,
                            name=product.name,
                            description=product.description,
                            price=product.full_price,
@@ -85,11 +121,13 @@ def product(id):
                            product_id=id)
 
 
-def cart_items(item1, item2):
-    if isinstance(item1, list) and isinstance(item2, list):
-        return item1 + item2
-    if isinstance(item1, dict) and isinstance(item2, dict):
-        return dict(list(item1.item() + item2.item()))
+# def cart_items(item1, item2):
+#     print(type(item1))
+#     print(type(item2))
+#     if isinstance(item1, list) and isinstance(item2, list):
+#         return item1 + item2
+#     if isinstance(item1, dict) and isinstance(item2, dict):
+#         return dict(list(item1.item() + item2.item()))
 
 
 @app.route("/add", methods=['POST'])
@@ -102,14 +140,18 @@ def add_to_cart():
         if product_id and quantity and request.method == "POST":
             CartItem = {product_id: {'name': product.name, 'price': float(product.full_price), 'quantity': quantity}}
             if 'Cart' in session:
-                print(session['Cart'])
+                cart = session['Cart']
+                print(cart)
                 if product_id in session['Cart']:
-                    for key, item in session['Cart'].items():
+                    for key, item in session['Cart']:
                         if int(key) == int(product_id):
                             session.modified = True
                             item['quantity'] += 1
                 else:
-                    session['Cart'] = cart_items(session['Cart'], CartItem)
+                    # session['Cart'] = cart_items(session['Cart'], CartItem)
+                    current_cart = session['Cart']
+                    current_cart.update(CartItem)
+                    session['Cart'] = current_cart
                     return redirect('cart.html')
             else:
                 session['Cart'] = CartItem
@@ -181,33 +223,40 @@ def clear_cart():
         print(e)
 
 
-# This route points to a product category page, it queries and filters results based on category id
 @app.route('/')
 @app.route('/clothes')
 def clothes():
     products = Product.query.filter_by(product_category_id=1)
-    return render_template("clothes.html", title="Clothes", products=products)
+    for product in products:
+        print(product.image)
+    return render_template("clothes.html", title="Clothes", products=products, product_image=product.image)
 
 
 # this route points to the keyrings product page, which displays all the keyring products in the database
 @app.route('/keyrings')
 def keyrings_and_badges():
     products = Product.query.filter_by(product_category_id=3)
-    return render_template("keyrings_and_badges.html", title="Keyrings & Badges", products=products)
+    for product in products:
+        print(product.image)
+    return render_template("keyrings_and_badges.html", title="Keyrings & Badges", products=products, product_image=product.image)
 
 
 # this route points to the collectibles product page, which displays all the collectibles products in the database
 @app.route('/collectibles')
 def collectibles():
-    products = Product.query.filter_by(product_category_id=3)
-    return render_template("collectibles.html", title="Collectibles", products=products)
+    products = Product.query.filter_by(product_category_id=4)
+    for product in products:
+        print(product.image)
+    return render_template("collectibles.html", title="Collectibles", products=products, product_image=product.image)
 
 
 # this route points to the games product page, which displays all the games products in the database
 @app.route('/games')
 def games():
     products = Product.query.filter_by(product_category_id=2)
-    return render_template("games.html", title="Games", products=products)
+    for product in products:
+        print(product.image)
+    return render_template("games.html", title="Games", products=products, product_image=product.image)
 
 
 # This route points to a page which displays all products in the database
@@ -215,13 +264,15 @@ def games():
 @app.route('/products')
 def products():
     products = Product.query.all()
-    return render_template("products.html", title="Products", products=products)
+    for product in products:
+        print(product.image)
+    return render_template("products.html", title="Products", products=products, product_image=product.image)
 
-
-@app.route('/chess')
-def chess_deluxe():
-    products = Product.query.filter_by(name='Lord of the Rings Collectible Chess Set - Officially Licensed Film Set Movie Gifts')
-    return render_template("product_chess_deluxe.html", title="Chess Set", products=products)
+#this route is for displaying multiple images, do not use unless we decide to use multiple images
+# @app.route('/chess')
+# def chess_deluxe():
+#     products = Product.query.filter_by(name='Lord of the Rings Collectible Chess Set - Officially Licensed Film Set Movie Gifts')
+#     return render_template("product_chess_deluxe.html", title="Chess Set", products=products)
 
 
 @app.errorhandler(404)

@@ -1,34 +1,40 @@
 {% extends "layout.html" %}
 {% block body_content %}
+<!--This file if for multiple images display. Will only beuse if we decide to display multiple images -->
 <!--Mya comment: the following block is code in progress to display images in thumb size and enlarge when clicked-->
-<!--<div class="container body-box">-->
-<!--    <h2>Lord of the Rings Collectible Chess Set - Officially Licensed Film Set Movie Gifts</h2>-->
-<!--    <div class="image-box container">-->
-<!--        <div class="imagebox"><img scr="{{ url_for('static', filename='images/product_images/lotr_chess_set_deluxe.jpg') }}"></div>-->
-<!--            <li><a href="{{ url_for('static', filename='images/product_images/lotr_chess_set_deluxe.jpg') }}" target="imagebox"><img scr="{{ url_for('static', filename='images/product_images/lotr_chess_set_deluxe.jpg') }}" alt="" width="100px"></a></li>&ndash;&gt;-->
-<!--             <li><a href="lotr_chess_set_deluxe2.jpg" target="imagebox"><img scr="{{ url_for('static', filename='images/product_images/lotr_chess_set_deluxe2.jpg') }}" width="100px"></a></li>&ndash;&gt;-->
-<!--             <li><a href="lotr_chess_set_deluxe2.jpg" target="{{ url_for('static', filename='images/product_images/lotr_chess_set_deluxe3.jpg') }}" width="100px"></a></li>&ndash;&gt;-->
-
-<!--&lt;!&ndash;         "{{ url_for('static', filename='styles.css') }}&ndash;&gt;-->
-
-<!--            </ul>-->
-<!--            <script src="https://code/jsquery.com/jquery-2.2.4.js"></script>-->
-<!--            <script type="text/javascript">-->
-<!--                $(document).ready(function(){-->
-<!--                    $('.thumb a').click(function(e){-->
-<!--                        e.preventDefault();-->
-<!--                        $ ('.imagebox img').attr("src", $(this).attr("href"));-->
-<!--                    })-->
-<!--                })-->
-<!--            </script>-->
-<!--        </div>-->
-    </div>
-    {% for product in products %}
-    <div class="product-box container">
-        <h3 class="product-title">{{ product.name }}</h3>
+<div class="container body-box">
+    <h2>Lord of the Rings Collectible Chess Set - Officially Licensed Film Set Movie Gifts</h2>
+    <div class="image-box container">
+        <div class="imagebox"><img src="{{ url_for('static', filename='images/product_images/lotr_chess_set_deluxe.jpg') }}"></div>
+        <ul class="image-thumb">
+            <li><a href="{{ url_for('static', filename='images/product_images/lotr_chess_set_deluxe.jpg') }}" target="imagebox">
+                <img src="{{ url_for('static', filename='images/product_images/lotr_chess_set_deluxe.jpg') }}" alt="" width="80px" height="70px">
+            </a></li>
+            <li><a href="lotr_chess_set_deluxe2.jpg" target="imagebox">
+                <img src="{{ url_for('static', filename='images/product_images/lotr_chess_set_deluxe2.jpg') }}" width="80px" height=""70px>
+            </a></li>
+            <li><a href="lotr_chess_set_deluxe3.jpg" target="imagebox">
+                <img src="{{ url_for('static', filename='images/product_images/lotr_chess_set_deluxe3.jpg') }}" width="100px" height=""70px>
+            </a></li>
+        </ul>
+        <script src="https://code/jsquery.com/jquery-2.2.4.js"></script>
+        <script type="text/javascript">
+                $(document).ready(function(){
+                    $('.image-thumb a').click(function(e){
+                        e.preventDefault();
+                        $ ('.imagebox img').attr("src", $(this).attr("href"));
+                    })
+                })
+        </script>
+        </div>
+            {% for product in products %}
+         <div class="container product-info-box">
+<!--        <h3 class="product-title">{{ product.name }}</h3>-->
         <p class="product-description">{{ product.description }}</p>
         <p class="product-price">£{{ product.full_price }}</p>
     </div>
     {% endfor %}
+    </div>
+
 </div>
 {% endblock %}

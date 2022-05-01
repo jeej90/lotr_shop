@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block body_content %}
-<div class="container">
+<div class="container body-box">
     <div class="row">
         <div>
         <table>
@@ -30,7 +30,7 @@
         </table>
         <table class="table table-sm">
            <tr>
-               <td> <h5>Grand total: £{{ grand_total }}</h3> </td>
+               <td> <h5>Grand total: £{{ grand_total }}</h5> </td>
                 <td> <a href="{{ url_for('clear_cart') }}"> Clear cart</a> </td>
            </tr>
         </table>

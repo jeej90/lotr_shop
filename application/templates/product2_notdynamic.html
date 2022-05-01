@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body_content %}
+<div class="container body-box">
+    <div class="grid-container">
+        <div class="grid-child image">
+            <img src="{{ url_for('static', filename='images/product_images/2.keyring.arwen.jpg' )}}" width="75px" height="350px"/>
+        </div>
+        <div class="grid-child product">
+            <h3 class="product-title">{{ name }}</h3>
+            <p class="product-description">{{ description }}</p>
+            <p class="product-price">£{{ price }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

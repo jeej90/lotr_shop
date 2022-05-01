@@ -1,6 +1,11 @@
+import login as login
 from application import db, login_manager
+from flask import session, redirect, url_for, abort
 from datetime import datetime
-from flask_login import UserMixin
+from flask_login import UserMixin, current_user, login_user
+from flask_admin import Admin, AdminIndexView
+from flask_admin.contrib.sqla import ModelView
+from sqlalchemy import update
 # from sqlalchemy import declarative_base
 # Base = declarative_base()
 # class User(Base):
@@ -26,7 +31,7 @@ class Customer(db.Model):
 
     # method that prints our object as a string
     def __repr__(self):
-        return f"Customer('{self.first_name}', '{self.last_name}', '{self.email}', '{self.contact_no}')"
+        return f"Customer('{self.first_name} {self.last_name}', '{self.email}', '{self.contact_no}')"
 
 
 class Address(db.Model):
@@ -38,7 +43,7 @@ class Address(db.Model):
     postcode = db.Column(db.String(8), nullable=False)
 
     def __repr__(self):
-        return f"Address('{self.address_line1}', '{self.address_line2}', '{self.address_line3}', '{self.county}', '{self.postcode}')"
+        return f"{self.address_line1}, {self.address_line2}, {self.county}, {self.postcode}"
 
 
 # JeJe: added unique=True for fields that need to be unique
@@ -53,32 +58,41 @@ class RegisteredUser(db.Model, UserMixin):
     customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=True)
 
     def __repr__(self):
-        return f"Registered User('{self.user_name}', '{self.email}')"
+        return f"Registered User({self.user_name}, {self.email})"
 
 
 # JeJe: added product classes
+
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
-    description = db.Column(db.String(500), nullable=False)
+    description = db.Column(db.String(1500), nullable=False)
     # need to change full price from string to float so we can manipulate this
     full_price = db.Column(db.String(50), nullable=False)
     barcode = db.Column(db.String(200), unique=True, nullable=False)
-    available_stock = db.Column(db.String(200), nullable=False)
+    available_stock = db.Column(db.Integer)
     reserved_stock = db.Column(db.Integer)
     sold_stock = db.Column(db.Integer)
-    size_id = db.Column(db.Integer, db.ForeignKey('size.id'), nullable=True)
+    # image = db.Column(db.String(200), nullable=False)
+    # size_id = db.Column(db.Integer, db.ForeignKey('size.id'), nullable=True)
     colour_id = db.Column(db.Integer, db.ForeignKey('colour.id'), nullable=True)
     # stock_id = db.Column(db.Integer, db.ForeignKey('stock.id'), nullable=True)
     product_category_id = db.Column(db.Integer, db.ForeignKey('product_category.id'), nullable=True)
+    image_id = db.Column(db.Integer, db.ForeignKey('image.id'), nullable=True)
+    category = db.relationship('ProductCategory', backref='product')
+    image = db.relationship('Image', backref='product')
+
 
     def __repr__(self):
-        return f"Product('{self.name}', '{self.description}', {self.full_price})"
+        return f"Product({self.name}, {self.description}, {self.full_price})"
 
 
 class ProductCategory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     category = db.Column(db.String(50), nullable=False)
+
+    def __repr__(self):
+        return f"{self.category}"
 
 
 class Size(db.Model):
@@ -97,7 +111,64 @@ class Colour(db.Model):
 #     reserved_stock = db.Column(db.Integer)
 #     sold_stock = db.Column(db.Integer)
 #     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=True)
+#
+#     def __repr__(self):
+#         return f"Stock('{self.available_stock}', '{self.reserved_stock}', {self.full_price})"
+
+class Image(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200), nullable=False)
 
     def __repr__(self):
-        return f"Stock('{self.available_stock}', '{self.reserved_stock}', {self.full_price})"
+        return f"{self.name}"
+
+
+class Administrator(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_name = db.Column(db.String(50), unique=True, nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    password = db.Column(db.String(200), nullable=False)
+    staff_id = db.Column(db.Integer, db.ForeignKey('staff.id'), nullable=True)
+    admin_staff = db.relationship('Staff', backref='staff')
+
+
+class Staff(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(50), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
+    DOB = db.Column(db.DATE, nullable=True)
+    job_title = db.Column(db.String(100), unique=True, nullable=False)
+    start_date = db.Column(db.DATE, nullable=True)
+    address_id = db.Column(db.Integer, db.ForeignKey('address.id'), nullable=False)
+    staff_address = db.relationship('Address', backref='staff', uselist=False)
+
+    def __repr__(self):
+        return f"{self.first_name} {self.last_name}, {self.job_title}"
+
+# @login.user_loader
+# def load_admin(id):
+#     return Administrator.query.get(id)
+
+
+class MyModelView(ModelView):
+    column_display_pk = True  # optional, but I like to see the IDs in the list
+    column_hide_backrefs = False
+    def is_accessible(self):
+        # return current_user.is_authinticated
+        if "logged_in" in session:
+            return True
+        else:
+            # abort(403)
+            return redirect(url_for('admin_login'))
+
+
+class MyAdminView(AdminIndexView):
+    def is_accessible(self):
+        # return current_user.is_authinticated
+        if "logged_in" in session:
+            return True
+        else:
+            # abort(403)
+            return redirect(url_for('admin_login'))
+
 

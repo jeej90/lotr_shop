@@ -1,5 +1,11 @@
 from application import db
-from application.models import Customer, Address, RegisteredUser, Product, Size, ProductCategory, Colour
+
+# import mysql.connector
+# mydb = mysql.connector.connect(
+#     host='localhost',
+#     user='root',
+#     password='password')
+from application.models import Customer, Address, RegisteredUser, Product, Size, ProductCategory, Colour, Admin, Staff
 
 # db.drop_all()
 # db.create_all()
@@ -56,10 +62,13 @@ from application.models import Customer, Address, RegisteredUser, Product, Size,
 #
 # # products!
 
+# products!
+
 # product1 = Product(name='Aragorn V-neck T-shirt', description="The Lord of the Rings Aragorn V-Neck T-Shirt, Black, 100% cotton White t-shirt of 100% cotton", full_price="25.00", barcode="1028974591628", size_id=4, colour_id=2, product_category_id=1)
 #
 # db.session.add(product1)
 # db.session.commit()
+
 
 # need to resolve stock management control issue based on tables for different sizes of same product
 # db.session.add(testUser1)
@@ -69,4 +78,9 @@ from application.models import Customer, Address, RegisteredUser, Product, Size,
 # result = RegisteredUser.query.filter_by(user_name=adam).first()
 # print(result)
 
+
+# admin1 = Admin(user_name='admin', email="jihan.alfarra@gmail.com", password="admin", staff_id="1")
+# # staff1 = Staff(first_name='Jihan', last_name="Alfarra", DOB="1900-11-05", job_title="Web manager", start_date="2022-01-01")
+# db.session.add(admin1)
+# db.session.commit()
 
