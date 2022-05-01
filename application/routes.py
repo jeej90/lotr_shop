@@ -1,8 +1,10 @@
+import secrets
+
 from flask import render_template, flash, redirect, url_for, request, session, current_app
 from application import app, db, bcrypt
-from application.forms import RegistrationForm, LoginForm, AdminLogin
-from application.models import RegisteredUser, Product, Image, Administrator, Staff
-from flask_login import login_user, current_user, logout_user
+from application.forms import RegistrationForm, LoginForm, AdminLogin, CustomerDetails
+from application.models import RegisteredUser, Product, Image, Administrator, Staff, Purchase, Customer, Address
+from flask_login import login_user, current_user, logout_user, login_required
 from flask_admin import Admin
 
 
@@ -11,6 +13,10 @@ from flask_admin import Admin
 def home():
     products = Product.query.all()
     return render_template("home.html", title="Lord of the Rings Emporium", products=products)
+
+@app.route('/home2')
+def home2():
+    return render_template("home2.html", title="Lord of the Rings Emporium")
 
 
 @app.route('/')
@@ -68,14 +74,13 @@ def login():
 @app.route("/adminlogin", methods=['GET', 'POST'])
 def admin_login():
     # session["logged_in"] = True
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
     form = AdminLogin()
     if form.validate_on_submit():
         admin = Administrator.query.filter_by(user_name=form.user_name.data).first()
         password = Administrator.query.filter_by(password=form.password.data).first()
         if admin and password:
             next_page = request.args.get('next')
+            session['Admin'] = True
             return redirect(next_page) if next_page else redirect(url_for('admin'))
         else:
             flash('Login unsuccessful. Please check username and password')
@@ -84,7 +89,10 @@ def admin_login():
 
 @app.route("/admin")
 def admin():
-    return render_template("admin.html")
+    if 'Admin' not in session:
+        redirect(url_for('admin_login'))
+    else:
+        return render_template("admin.html")
 
 
 @app.route("/logout")
@@ -96,9 +104,9 @@ def logout():
 
 @app.route("/adminlogout")
 def admin_logout():
-    session["logged_in"] = True
-    session.clear()
-    return redirect(url_for('home'))
+    # session.clear()
+    session.pop('Admin', default=None)
+    return redirect(url_for('admin_login'))
 
 # Dynamic route that creates a page for each product: it filters by  id and returns desired rows of data from the db
 # The route points to the template HTML product page
@@ -220,6 +228,65 @@ def clear_cart():
         return redirect(url_for('get_cart'))
     except Exception as e:
         print(e)
+
+@app.route('/checkout', methods=['GET', 'POST'])
+def checkout():
+    if current_user.is_authenticated:
+        customer_id = current_user.id
+    form = CustomerDetails()
+    if form.validate_on_submit():
+        customer_info = Customer(first_name=form.first_name.data, last_name=form.last_name.data, email=form.email.data)
+        customer_address = Address(address_line1=form.address1.data, address_line2=form.address2.data, address_line3=form.address3.data, county=form.address4.data, postcode=form.address5.data,)
+        db.session.add(customer_info)
+        db.session.add(customer_address)
+        db.session.commit()
+        flash("Thank you")
+        return redirect(url_for('order_confirmed'))
+    return render_template('checkout.html', form=form)
+
+@app.route('/confirmed')
+def order_confirmed():
+    session.pop('Cart', default=None)
+    return render_template('confirmation.html')
+
+# Mya and Alice - order confirmation
+
+# created a route to get the order details and input into order table in the database
+@app.route('/getorder')
+@login_required
+def get_order():
+    if current_user.is_authenticated:
+        customer_id = current_user.id
+        #can we get rid of invoice? Use the order_id as the invoice number
+        invoice = secrets.token_hex(5)
+        try:
+            # possibly remove invoice and replace with order_id
+            order = Order(invoice=invoice, customer_id=customer_id, orders=session
+                                  ['Shoppingcart'])
+            db.session.add(order)
+            db.session.commit
+            session.pop('Shoppingcart')
+            flash('Your order has been sent successfully', 'success')
+            return redirect(url_for('home'))
+        except Exception as e:
+            print(e)
+            flash('Some thing went wrong while getting your order details', 'danger')
+            return redirect(url_for('getCart'))
+
+
+@app.route('/orders/<invoice>')
+@login_required
+def orders(invoice):
+    if current_user.is_authenticated:
+        orderTotal = 0
+        customer_id = current_user.id
+        customer = Register.query.filter_by(id=customer_id).first()
+        orders = CustomerOrder.query.filter_by(customer_id=customer_id).first()
+        for _key, product in orders.orders.items():
+            orderTotal += float(product['price']) + int(product['quantity'])
+    else:
+        return redirect(url_for('customerLogin'))
+    return render_template('customer/login.html', invoice=invoice, orderTotal=orderTotal, customer=customer, orders=orders)
 
 
 @app.route('/')

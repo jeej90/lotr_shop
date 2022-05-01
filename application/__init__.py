@@ -21,7 +21,8 @@ from flask_login import LoginManager
 login_manager = LoginManager(app)
 
 from flask_admin import Admin
-from application.models import Administrator, MyModelView, MyAdminView, Purchase, Product, Image, RegisteredUser, Customer, Address, ProductCategory, Staff
+from application.models import Administrator, MyModelView, MyAdminView, Product, Image, RegisteredUser, Customer, Address, ProductCategory, Staff, Purchase
+
 # from flask_admin.contrib.sqla import ModelView
 
 admin = Admin(app, index_view=MyAdminView())

@@ -9,6 +9,8 @@
         <img src= "{{ url_for('static', filename ='images/product_images/') }}{{image}}" width="360px" height="360px">
         <h3 class="product-title"><a href="product/{{product_id}}" style="color:#B8860B;">{{ product.name }}</a></h3>
 <!--        <p class="product-description">{{ product.description }}</p>-->
+        <img src= "{{ url_for('static', filename ='images/product_images_mm/') }}{{image}}" width="100px" height="100px">
+        <p class="product-description">{{ product.description }}</p>
         <p class="product-price">£{{ product.full_price }}</p>
 <!--        <p class="more info" ><a href="product/{{product_id}}"> Click for more information</a></p>-->
     </div>
