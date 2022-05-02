@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body_content %}
 <div class="container image-body-box">
-      <img src="{{url_for('static', filename='images/carousel6.webp')}}" style="width:100%;" width="400px" height="1100px">
+      <img src="{{url_for('static', filename='images/carousel6.webp')}}" style="width:100%;" width="400px" height="550px">
 </div>
 <div class="container all-body-box">
     <h2>Collectibles</h2>
@@ -13,7 +13,7 @@
         <h3 class="product-title"><a href="product/{{product_id}}" style="color:#B8860B;">{{ product.name }}</a></h3>
 <!--        <p class="product-description">{{ product.description }}</p>-->
         <p class="product-price">£{{ product.full_price }}</p>
-<!--        <p class="more info" ><a href="product/{{product_id}}"> Click for more information</a></p>-->
+        <p class="more info" ><a href="product/{{product_id}}"> Click for more information</a></p>
     </div>
     {% endfor %}
 </div>

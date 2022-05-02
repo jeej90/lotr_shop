@@ -1,10 +1,12 @@
 {% extends "layout.html" %}
 {% block body_content %}
 <div class="container image-body-box">
-      <img src="{{url_for('static', filename='images/carousel1.jpeg')}}" style="width:100%;" width="400px" height="1100px">
+      <img src="{{url_for('static', filename='images/carousel1.jpeg')}}" style="width:100%;" width="400px" height="550px">
 </div>
 <div class="container all-body-box">
     <h1>Welcome to The Lord of the Rings Emporium - the one shop to rule them all!</h1>
+    <br>
+    <h2></h2>
 </div>
 <div class="container all-body-box">
     <h2>All Products</h2>
@@ -13,9 +15,9 @@
     {% set product_id = product.id %}
     {% set image = product.image %}
     <div class="product-box container">
+        <img src= "{{ url_for('static', filename ='images/product_images/') }}{{image}}" width="360px" height="360px">
         <h3 class="product-title"><a href="product/{{product_id}}" style="color:#B8860B;">{{ product.name }}</a></h3>
-        <img src= "{{ url_for('static', filename ='images/product_images/') }}{{image}}" width="100px" height="100px">
-        <p class="product-description">{{ product.description }}</p>
+<!--        <p class="product-description">{{ product.description }}</p>-->
         <p class="product-price">£{{ product.full_price }}</p>
         <p class="more info" ><a href="product/{{product_id}}"> Click for more information</a></p>
     </div>

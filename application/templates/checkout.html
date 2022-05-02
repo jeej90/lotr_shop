@@ -1,5 +1,8 @@
 {% extends "layout.html" %}
 {% block body_content %}
+<div class="container image-body-box">
+      <img src="{{url_for('static', filename='images/carousel13.jpg')}}" style="width:100%;" width="400px" height="550px">
+</div>
 <div class="content">
     <div class='form container'>
         <form method='POST' action=''>
@@ -45,4 +48,6 @@
                     {{ form.submit(class="btn btn-outline-info") }}
                 </div>
         </form>
+    </div>
+</div>
 {% endblock %}

@@ -98,7 +98,7 @@ h2 {
 .navbar ul li {
     /*width: 150px;
     margin: top;*/
-    width: 250px;
+    width: auto;
     margin: 0px;
     padding: 0px;
 }
@@ -107,6 +107,8 @@ h2 {
     display: block;
     text-decoration: none;
     color: #FFFFFF;
+    padding-left: 60px;
+    padding-right: 60px;
     /*float: bottom;*/
 
 }
@@ -157,7 +159,9 @@ h2 {
 .active, .navbar ul li a:hover {
     float: none;
     color: #FFFFFF;
-    padding: 4px 4px;
+    /*padding: 4px 4px;*/
+    padding-left: 60px;
+    padding-right: 60px;
     text-decoration: none;
     display: block;
     background: #DAA520;
@@ -171,6 +175,7 @@ h2 {
     font-size: 22px;
     font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
     padding-right: 20px;
+    margin-top: 10px;
 }
 
 /* body {
@@ -277,7 +282,7 @@ footer {
 .product-box{
     background: #f3e5d8;
     width: 400px;
-    height: 500px;
+    height: 650px;
     margin: auto;
     margin-bottom: 20px;
     position: relative;
