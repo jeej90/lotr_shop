@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
 {% block body_content %}
 <div class="container image-body-box">
-      <img src="{{url_for('static', filename='images/carousel6.webp')}}" style="width:100%;" width="400px" height="550px">
+      <img src="{{url_for('static', filename='images/carousel6_frame.png')}}" style="width:100%;" width="400px" height="500px">
 </div>
 <div class="container all-body-box">
-    <h2>Collectibles</h2>
+    <h1>Collectibles</h1>
     {% for product in products %}
     {% set product_id = product.id %}
     {% set image = product.image %}

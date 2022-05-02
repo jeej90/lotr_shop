@@ -9,10 +9,10 @@ body {
   back-ground-attachment: fixed;
   background-size: cover;
   text-align: center;
-  font-size: 15pt;
+  font-size: 20pt;
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
   color: #B8860B;
-  line-height: 14pt;
+  line-height: 28pt;
   /*padding-left: 5pt;
   padding-right: 5pt;
   padding-top: 5pt;}*/
@@ -41,7 +41,7 @@ h2 {
 
 .header {
   width: 100%;
-  height: 280px;
+  /*height: 280px;*/
   position: absolute;
   top: 0;
   left: 0;
@@ -49,7 +49,7 @@ h2 {
   text-align: center;
   background: black;
   vertical-align: middle;
-  height:350px;
+  height:430px;
   width: 100%;
   overflow:hidden;
 
@@ -63,16 +63,18 @@ h2 {
 
 .navbar {
     height: 70px;
-    margin-top:350px;
-    margin-top:350px;
+    margin-top:425px;
+    /*margin-top:350px;*/
     background-color: #272537;
     text-align: center;
+    /*text-vertical-align: middle;*/
+    line-height: 20px;
     font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
     color: #FFFFFF;
     font-size: 25px;
     position: relative;
     width: 100%;
-    /*padding: 0 25px;
+    /*padding: 0 25px;*/
 
     /*position: relative;
    display: flex;
@@ -90,6 +92,7 @@ h2 {
    /*width: 100%;*/
    display: inline-flex;
    text-align: center;
+   text-vertical-align: middle;
    list-style: none;
    color: #FFFFFF;
 }
@@ -109,6 +112,7 @@ h2 {
     color: #FFFFFF;
     padding-left: 60px;
     padding-right: 60px;
+    /*padding-bottom: 5px;*/
     /*float: bottom;*/
 
 }
@@ -175,7 +179,7 @@ h2 {
     font-size: 22px;
     font-family: 'Amita', cursive; Geneva, Arial, Helvetica, sans-serif;
     padding-right: 20px;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
 }
 
 /* body {
@@ -282,7 +286,7 @@ footer {
 .product-box{
     background: #f3e5d8;
     width: 400px;
-    height: 650px;
+    height: 700px;
     margin: auto;
     margin-bottom: 20px;
     position: relative;
