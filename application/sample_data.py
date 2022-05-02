@@ -1,6 +1,7 @@
 
 from application import db
-from application.models import Customer, Address, RegisteredUser, Product, Size, Image, ProductCategory, Colour, Admin, Staff
+from application.models import Customer, Address, RegisteredUser, Product, Size, Image, ProductCategory, Colour, Admin, \
+    Staff, Administrator
 from flask import session
 
 
@@ -144,12 +145,12 @@ img11 = Image(name="011.games.lotrcards.jpg")
 img12 = Image(name="012.games.hexagonteaser.jpg")
 img13 = Image(name="013.games.heroes1000p.jpg")
 img14 = Image(name="014.collectibles.gollumfigurine.jpg")
-img15 = Image(name="015.collectibles.gimli.jpg")
-img16 = Image(name="016.collectibles.legolas.jpg")
-img17 = Image(name="017.collectibles.galadriel.jpg")
-img18 = Image(name="018.collectibles.gollum.jpg")
-img19 = Image(name="019.collectibles.elevnleaf.jpg")
-img20 = Image(name="020.collectibles.oneringnecklace.jpg")
+img15 = Image(name="014.collectibles.gimli.jpg")
+img16 = Image(name="015.collectibles.legolas.jpg")
+img17 = Image(name="016.collectibles.galadriel.jpg")
+img18 = Image(name="017.collectibles.gollum.jpg")
+img19 = Image(name="018.collectibles.elevnleaf.jpg")
+img20 = Image(name="019.collectibles.oneringnecklace.jpg")
 images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img15, img16, img17,  img18, img19, img20]
 db.session.add_all(images)
 db.session.commit()
@@ -201,10 +202,10 @@ db.session.commit()
 # print(Cart[product_id])
 # print(len(Cart))
 
-# staff1 = Staff(first_name='Jihan', last_name="Alfarra", DOB="1900-11-05", job_title="Web manager", start_date="2022-01-01")
-# admin1 = Admin(user_name="admin", email="jihan.alfarra@gmail.com", password="admin", staff_id="1")
-# db.session.add(admin1)
-# db.session.commit()
+staff1 = Staff(first_name='Jihan', last_name="Alfarra", DOB="1900-11-05", job_title="Web manager", start_date="2022-01-01")
+# admin1 = Administrator(user_name="admin", email="jihan.alfarra@gmail.com", password="admin", staff_id="1")
+db.session.add(staff1)
+db.session.commit()
 
 # ALTER TABLE `lotr_shop`.`customer`
 # CHANGE COLUMN `contact_no` `contact_no` VARCHAR(11) NULL ;

@@ -47,3 +47,4 @@ class CustomerDetails(FlaskForm):
     address4 = StringField('County', validators=[DataRequired(), Length(min=2, max=100)])
     address5 = StringField('Postcode', validators=[DataRequired(), Length(min=2, max=100)])
     submit = SubmitField('Confirm Order')
+

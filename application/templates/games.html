@@ -1,6 +1,9 @@
 {% extends "layout.html" %}
 {% block body_content %}
-<div class="container body-box">
+<div class="container image-body-box">
+      <img src="{{url_for('static', filename='images/carousel5.jpg')}}" style="width:100%;" width="400px" height="1100px">
+</div>
+<div class="container all-body-box">
     <h2>Games</h2>
     {% for product in products %}
     {% set product_id = product.id %}

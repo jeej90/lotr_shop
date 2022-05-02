@@ -208,6 +208,6 @@ class Purchase(db.Model):
     # def __repr__(self):
     #     return'<CustomerOrder %r>' % self.invoice
 
-# class OrderStatus(db.Model):
+# class PurchaseStatus(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)
 #     order_status = db.Column(db.String(30), unique=True, nullable=False)

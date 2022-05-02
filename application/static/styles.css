@@ -5,6 +5,9 @@ html {
 
 body {
   background-image: url('images/lotr_map.jpeg');
+  background-repeat: no-repeat;
+  back-ground-attachment: fixed;
+  background-size: cover;
   text-align: center;
   font-size: 15pt;
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
@@ -237,6 +240,28 @@ footer {
     width: auto;
     height: auto;
     margin: 50px;
+    position: relative;
+    padding: 12px 12px 12px 0;
+}
+
+.all-body-box{
+    background: rgba(0, 0, 0, 0.8);
+    width: auto;
+    height: auto;
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 0px;
+    position: relative;
+    padding: 12px 12px 12px 0;
+}
+
+.image-body-box{
+    background: rgba(0, 0, 0, 0.8);
+    width: auto;
+    height: auto;
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 0px;
     position: relative;
     padding: 12px 12px 12px 0;
 }
