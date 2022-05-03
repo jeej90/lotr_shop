@@ -4,10 +4,10 @@
 <div class="container body-box">
     <div class="grid-container">
         <div class="grid-child image">
-            <img src= "{{ url_for('static', filename ='images/product_images_mm/' + image_name) }}" width="300" height="300">
+            <img src= "{{ url_for('static', filename ='images/product_images_mm/' + image_name) }}" width="460" height="460">
         </div>
         <div class="grid-child product">
-            <h3 class="product-title">{{ name }}</h3>
+            <h1 class="product-title">{{ name }}</h1>
             <p class="product-description">{{ description }}</p>
             <p class="product-price">£{{ price }}</p>
         </div>
