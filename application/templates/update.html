@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block body_content %}
+<div class="content body-box">
+    <div class='form container'>
+    <p style="align-text:lef;">Hello, {{current_user.user_name}}! You can update your account details below:</p>
+
+        <form method='POST' action=''>
+            <!-- provides CSRF protection, alongside secret key. Use on all POST forms -->
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <div class="form-group">
+                    {{ form.user_name.label(class="form-control-label") }}
+                    {% if form.user_name.errors %}
+                        {{ form.user_name(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.user_name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.user_name(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                        {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                        {% endif %}
+                </div>
+
+            </fieldset>
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-outline-info") }}
+                </div>
+                <div class="form-group">
+                <a href="{{ url_for('account') }}">Cancel</a>
+                </div>
+        </form>
+    </div>
+</div>
+{% endblock body_content %}

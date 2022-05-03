@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block body_content %}
+<div class="body-box">
+    <p style="align-text:lef;">Hello, {{current_user.user_name}}!</p>
+    <table>
+        <tr style=text-align:left;">
+            <td>Username: {{user_name}}</td>
+        </tr>
+        <tr style=text-align:left;">
+            <td></br>Email: {{email}}</td>
+        </tr>
+        <tr style=text-align:left;">
+            <td></br>First name: </td>
+        </tr>
+        <tr style=text-align:left;">
+            <td></br>Last name: </td>
+        </tr>
+        <tr style=text-align:left;">
+            <td></br>Contant number: </td>
+        </tr>
+        <tr style=text-align:left;">
+            <td></br>Delivery address: </td>
+        </tr>
+        <tr style=text-align:left;">
+            <td></br><a href="{{ url_for('update_account') }}">Edit</a></td>
+        </tr>
+    </table>
+</div>
+{% endblock body_content %}

@@ -30,8 +30,10 @@ class Customer(db.Model):
     address = db.Column(db.Integer, db.ForeignKey('address.id'), nullable=True)
     # order = db.Column(db.Integer, db.ForeignKey('purchase.id'), nullable=False)
     customer_address = db.relationship('Address', backref='customer', uselist=False)
-    registered_user = db.relationship('RegisteredUser', backref='customer', uselist=False)
+    # registered_user = db.relationship('RegisteredUser', backref='customer', uselist=False)
     # customer_order = db.relationship('Purchase', backref='customer', uselist=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('registered_user.id'), nullable=True)
+    user = db.relationship('RegisteredUser', backref='customer', uselist=False)
 
     # method that prints our object as a string
     def __repr__(self):
@@ -59,7 +61,7 @@ class RegisteredUser(db.Model, UserMixin):
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
     date_joined = db.Column(db.DateTime, nullable=False, default=datetime.now)
-    customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=True)
+    # customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=True)
 
     def __repr__(self):
         return f"Registered User({self.user_name}, {self.email})"
