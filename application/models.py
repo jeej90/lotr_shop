@@ -32,12 +32,11 @@ class Customer(db.Model):
     customer_address = db.relationship('Address', backref='customer', uselist=False)
     # registered_user = db.relationship('RegisteredUser', backref='customer', uselist=False)
     # customer_order = db.relationship('Purchase', backref='customer', uselist=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('registered_user.id'), nullable=True)
-    user = db.relationship('RegisteredUser', backref='customer', uselist=False)
+    # user_id = db.Column(db.Integer, db.ForeignKey('registered_user.id'), nullable=True)
 
     # method that prints our object as a string
     def __repr__(self):
-        return f"Customer('{self.first_name} {self.last_name}', '{self.email}', '{self.contact_no}')"
+        return f"{self.first_name} {self.last_name}"
 
 #
 class Address(db.Model):
@@ -61,7 +60,8 @@ class RegisteredUser(db.Model, UserMixin):
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
     date_joined = db.Column(db.DateTime, nullable=False, default=datetime.now)
-    # customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=True)
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=True)
+    customer = db.relationship('Customer', backref='registered_user', uselist=False)
 
     def __repr__(self):
         return f"Registered User({self.user_name}, {self.email})"

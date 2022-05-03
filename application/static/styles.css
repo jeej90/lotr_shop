@@ -260,6 +260,20 @@ footer {
     display:inline-grid;
 }
 
+.flashes{
+  display: inline-block;
+  text-align: center;
+  background-color: black;
+  border: 1px solid #B8860B;
+  width: 500px;
+  padding: 15px;
+  margin: 10px;
+  font-size: 15pt;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  color: white;
+  line-height: 20pt;
+}
+
 /*m=Mya this block of code is progress and is for an images box for the individual product pages
 .image-box{
     background: #f3e5d8;

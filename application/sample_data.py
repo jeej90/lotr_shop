@@ -1,5 +1,6 @@
 
 from application import db
+from flask_login import current_user
 from application.models import Customer, Address, RegisteredUser, Product, Size, Image, ProductCategory, Colour, Admin, Staff
 from flask import session
 
@@ -129,30 +130,30 @@ from sqlalchemy import update
 # # db.session.commit()
 
 # # Images
-#
-img1 = Image(name="001.clothes.aragorn.jpg")
-img2 = Image(name="002.keyring.arwen.jpg")
-img3 = Image(name="003.clothes.gandalf.jpg")
-img4 = Image(name="004.keyring.oneringbadge.jpg")
-img5 = Image(name="005.keyring.oneringkeyring.jpg")
-img6 = Image(name="006.keyring.lorienleaf.jpg")
-img7 = Image(name="007.keyring.frodo.jpg")
-img8 = Image(name="008.games.lotrmonopoly.jpg")
-img9 = Image(name="009.games.chessbattle.jpg")
-img10 = Image(name="010.games.chesslotrdeluxe.jpg")
-img11 = Image(name="011.games.lotrcards.jpg")
-img12 = Image(name="012.games.hexagonteaser.jpg")
-img13 = Image(name="013.games.heroes1000p.jpg")
-img14 = Image(name="014.collectibles.gollumfigurine.jpg")
-img15 = Image(name="015.collectibles.gimli.jpg")
-img16 = Image(name="016.collectibles.legolas.jpg")
-img17 = Image(name="017.collectibles.galadriel.jpg")
-img18 = Image(name="018.collectibles.gollum.jpg")
-img19 = Image(name="019.collectibles.elevnleaf.jpg")
-img20 = Image(name="020.collectibles.oneringnecklace.jpg")
-images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img15, img16, img17,  img18, img19, img20]
-db.session.add_all(images)
-db.session.commit()
+# #
+# img1 = Image(name="001.clothes.aragorn.jpg")
+# img2 = Image(name="002.keyring.arwen.jpg")
+# img3 = Image(name="003.clothes.gandalf.jpg")
+# img4 = Image(name="004.keyring.oneringbadge.jpg")
+# img5 = Image(name="005.keyring.oneringkeyring.jpg")
+# img6 = Image(name="006.keyring.lorienleaf.jpg")
+# img7 = Image(name="007.keyring.frodo.jpg")
+# img8 = Image(name="008.games.lotrmonopoly.jpg")
+# img9 = Image(name="009.games.chessbattle.jpg")
+# img10 = Image(name="010.games.chesslotrdeluxe.jpg")
+# img11 = Image(name="011.games.lotrcards.jpg")
+# img12 = Image(name="012.games.hexagonteaser.jpg")
+# img13 = Image(name="013.games.heroes1000p.jpg")
+# img14 = Image(name="014.collectibles.gollumfigurine.jpg")
+# img15 = Image(name="015.collectibles.gimli.jpg")
+# img16 = Image(name="016.collectibles.legolas.jpg")
+# img17 = Image(name="017.collectibles.galadriel.jpg")
+# img18 = Image(name="018.collectibles.gollum.jpg")
+# img19 = Image(name="019.collectibles.elevnleaf.jpg")
+# img20 = Image(name="020.collectibles.oneringnecklace.jpg")
+# images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img15, img16, img17,  img18, img19, img20]
+# db.session.add_all(images)
+# db.session.commit()
 
 
 # img14 = Image(name="14.collectibles.gollumfigurine.jpg")
@@ -211,3 +212,10 @@ db.session.commit()
 #
 # ALTER TABLE `lotr_shop`.`customer`
 # CHANGE COLUMN `address` `address` INT NULL ;
+
+# customer = RegisteredUser.query.filter_by(email="john@email.com").first()
+# customer_id = customer.customer_id
+
+customer_details = Customer.query.filter_by(id=1).first()
+first_name = customer_details.first_name
+print(first_name)

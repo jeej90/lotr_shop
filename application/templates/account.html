@@ -9,21 +9,29 @@
         <tr style=text-align:left;">
             <td></br>Email: {{email}}</td>
         </tr>
-        <tr style=text-align:left;">
-            <td></br>First name: </td>
-        </tr>
-        <tr style=text-align:left;">
-            <td></br>Last name: </td>
-        </tr>
-        <tr style=text-align:left;">
-            <td></br>Contant number: </td>
-        </tr>
-        <tr style=text-align:left;">
-            <td></br>Delivery address: </td>
-        </tr>
+<!--        <tr style=text-align:left;">-->
+<!--            <td></br>First name: {{first_name}}</td>-->
+<!--        </tr>-->
+<!--        <tr style=text-align:left;">-->
+<!--            <td></br>Last name: {{last_name}}</td>-->
+<!--        </tr>-->
+<!--        <tr style=text-align:left;">-->
+<!--            <td></br>Contant number: </td>-->
+<!--        </tr>-->
+<!--        <tr style=text-align:left;">-->
+<!--            <td></br>Delivery address: </td>-->
+<!--        </tr>-->
         <tr style=text-align:left;">
             <td></br><a href="{{ url_for('update_account') }}">Edit</a></td>
         </tr>
     </table>
+    <div class="container" style="display:inline; width: 100% padding:30px; align:center;">
+            <h2 style="color:white;"></br></br></br>Shop more Lord of the Rings</h2>
+            <div style="display:inline-block;">
+            <a href="{{ url_for('collectibles') }}"><img src= "{{ url_for('static', filename ='images/c1-collectibles.jpg') }}" width="400px;" height="400px;" style="border: 1px solid #B8860B;"></a>
+            <a href="{{ url_for('games') }}"><img src= "{{ url_for('static', filename ='images/c2-games.jpg') }}"  width="400px;" height="400px;" style="border: 1px solid #B8860B;"></a>
+            <a href="{{ url_for('keyrings_and_badges') }}"><img src= "{{ url_for('static', filename ='images/c3-keyrings.jpg') }}"  width="400px;" height="400px;" style="border: 1px solid #B8860B;"></a>
+            </div>
+    </div>
 </div>
 {% endblock body_content %}

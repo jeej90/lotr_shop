@@ -57,19 +57,19 @@
               </ul>
         </div>
 </main>
+
+    <div class="container">
     <div>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
-                <div>
+                <div class="flashes">
                     {{ message }}
                 </div>
                 {% endfor %}
             {% endif %}
         {% endwith %}
     </div>
-
-    <div class="container">
         {% block body_content %} {% endblock %}
     </div>
 

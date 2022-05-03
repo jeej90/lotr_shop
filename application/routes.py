@@ -41,13 +41,15 @@ def faq():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
-
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = RegisteredUser(user_name=form.user_name.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash(f'Your account successfully created. Welcome to Middle Earth!')
+        # customer = Customer(first_name='', last_name='', email=form.email.data)
+        # db.session.add(customer)
+        # db.session.commit()
+        flash(f'Your account was successfully created. Welcome to Middle Earth!')
         return redirect(url_for('login'))
 
     return render_template("register.html", title="Sign up", form=form)
@@ -107,6 +109,12 @@ def logout():
 def account():
     user_name = current_user.user_name
     email = current_user.email
+    # customer = RegisteredUser.query.filter_by(email=email).first()
+    # customer_id = customer.customer_id
+    # customer_details = Customer.query.filter_by(id=customer_id).first()
+    # first_name = customer_details.first_name
+    # last_name = customer_details.last_name
+    # deleted these defs: customer_id=customer_id, first_name=first_name, last_name=last_name
     return render_template('account.html', user_name=user_name, email=email)
 
 
@@ -114,15 +122,22 @@ def account():
 @login_required
 def update_account():
     form = UpdateAccount()
+    # customer = RegisteredUser.query.filter_by(email=current_user.email).first()
+    # customer_id = customer.customer_id
+    # customer_details = Customer.query.filter_by(id=customer_id).first()
+    # first_name = customer_details.first_name
+    # last_name = customer_details.last_name
     if form.validate_on_submit():
         current_user.user_name = form.user_name.data
         current_user.email = form.email.data
         db.session.commit()
-        flash('Your account has been updated.')
+        flash('Your account has been updated!')
         return redirect(url_for('account'))
     elif request.method == 'GET':
         form.user_name.data = current_user.user_name
         form.email.data = current_user.email
+        # form.first_name.data = first_name
+        # form.last_name.data = last_name
     return render_template('update.html', form=form)
 
 
@@ -189,7 +204,7 @@ def add_to_cart():
                     return redirect('cart.html')
             else:
                 session['Cart'] = CartItem
-                flash(f'Item added to your shopping cart!')
+                # flash(f'Item has been added to your shopping cart!')
                 return render_template('cart.html')
 
     except Exception as e:
@@ -220,7 +235,7 @@ def update_cart(code):
             for key, item in session['Cart'].items():
                 if int(key) == code:
                     item['quantity'] = quantity
-                    flash('Item is updated!')
+                    # flash('Item is updated!')
                     return redirect(url_for('get_cart'))
         except Exception as e:
             print(e)
@@ -271,7 +286,7 @@ def checkout():
         db.session.add(customer_info)
         db.session.add(customer_address)
         db.session.commit()
-        flash("Thank you")
+        # flash("Thank you")
         return redirect(url_for('order_confirmed'))
     return render_template('checkout.html', form=form)
 

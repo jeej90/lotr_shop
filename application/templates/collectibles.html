@@ -20,5 +20,13 @@
         </div>
     </div>
     {% endfor %}
+            <div class="container" style="display:inline; width: 100% padding:30px; align:center;">
+            <h2 style="color:white;"></br></br></br>Shop Lord of the Rings</h2>
+            <div style="display:inline-block;">
+            <a href="{{ url_for('collectibles') }}"><img src= "{{ url_for('static', filename ='images/c1-collectibles.jpg') }}" width="400px;" height="400px;" style="border: 1px solid #B8860B;"></a>
+            <a href="{{ url_for('games') }}"><img src= "{{ url_for('static', filename ='images/c2-games.jpg') }}"  width="400px;" height="400px;" style="border: 1px solid #B8860B;"></a>
+            <a href="{{ url_for('keyrings_and_badges') }}"><img src= "{{ url_for('static', filename ='images/c3-keyrings.jpg') }}"  width="400px;" height="400px;" style="border: 1px solid #B8860B;"></a>
+            </div>
+        </div>
 </div>
 {% endblock %}
