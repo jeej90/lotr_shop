@@ -9,17 +9,17 @@
     {% set product_id = product.id %}
     {% set image = product.image %}
     <div class="product-box container">
-        <img src= "{{ url_for('static', filename ='images/product_images_mm/') }}{{image}}" width="410px" height="360px">
+        <img src= "{{ url_for('static', filename ='images/product_images_mm/') }}{{image}}" width="360px" height="300px">
         <h3 class="product-title"><a href="product/{{product_id}}" style="color:#B8860B;">{{ product.name }}</a></h3>
 <!--        <p class="product-description">{{ product.description }}</p>-->
         <div class="grid-container">
         <p class="product-price">£{{ product.full_price }}</p>
 <!--        <p class="more info" ><a href="product/{{product_id}}"> Click for more information</a></p>-->
-        <form action="{{url_for('add_to_cart')}}" method="post">
-            <input type="hidden" name="product_id" value="{{product_id}}"></input>
-            <input class ="input" type="number" name="quantity" id="{{product_id}}" value="1" min="1" max="{{available_stock}}"></input>
-            <button type="submit">Add to cart</button>
-        </form>
+<!--        <form action="{{url_for('add_to_cart')}}" method="post">-->
+<!--            <input type="hidden" name="product_id" value="{{product_id}}"></input>-->
+<!--            <input class ="input" type="number" name="quantity" id="{{product_id}}" value="1" min="1" max="{{available_stock}}"></input>-->
+<!--            <button type="submit">Add to cart</button>-->
+<!--        </form>-->
         </div>
 <!--        <p class="more info" ><a href="product/{{product_id}}"> Click for more information</a></p>-->
     </div>
