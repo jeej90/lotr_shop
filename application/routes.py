@@ -262,6 +262,7 @@ def clear_cart():
     session.pop('Cart', default=None)
     return render_template('empty.html')
 
+
 # @app.route('/clearcart')
 # def clear_cart():
 #     if 'Cart' not in session or len(session['Cart']) <= 0:
@@ -298,6 +299,15 @@ def order_confirmed():
 
 
 # # Mya and Alice - order confirmation
+# @app.route('/purchaseupdate')
+# def update_purchase():
+#     if current_user.is_authenticated:
+#         customer_id = current_user.id
+#
+#
+#
+#
+# # Mya and Alice - order confirmation
 # # created a route to get the order details and input into order table in the database
 # @app.route('/getorder')
 # @login_required
@@ -306,6 +316,7 @@ def order_confirmed():
 #         customer_id = current_user.id
 #         #can we get rid of invoice? Use the order_id as the invoice number
 #         invoice = secrets.token_hex(5)
+#         invoice = Purchase.query.filter_by(id=)
 #         try:
 #             # possibly remove invoice and replace with order_id
 #             order = Order(invoice=invoice, customer_id=customer_id, orders=session

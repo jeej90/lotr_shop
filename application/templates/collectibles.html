@@ -1,7 +1,10 @@
 {% extends "layout.html" %}
 {% block body_content %}
-<div class="container body-box">
-    <h2>Collectibles</h2>
+<div class="container image-body-box">
+      <img src="{{url_for('static', filename='images/carousel6_frame.png')}}" style="width:100%;" width="400px" height="500px">
+</div>
+<div class="container all-body-box">
+    <h1>Collectibles</h1>
     {% for product in products %}
     {% set product_id = product.id %}
     {% set image = product.image %}
@@ -18,6 +21,7 @@
             <button type="submit">Add to cart</button>
         </form>
         </div>
+<!--        <p class="more info" ><a href="product/{{product_id}}"> Click for more information</a></p>-->
     </div>
     {% endfor %}
             <div class="container" style="display:inline; width: 100% padding:30px; align:center;">

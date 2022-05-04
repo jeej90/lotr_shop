@@ -1,6 +1,19 @@
 {% extends "layout.html" %}
 {% block body_content %}
-<div class="body-box">
-    <h2>Frequently Asked Questions</h2>
+<div class="container image-body-box">
+      <img src="{{url_for('static', filename='images/carousel2_frame.png')}}" style="width:100%;" width="400px" height="500px">
+</div>
+<div class="all-body-box">
+    <h1>Frequently Asked Questions</h1>
+    <h3>Delivery</h3>
+    <p>We only deliver within the United Kingdom</p>
+    <p>Delivery is a flat rate of £9.99 regardless of order size</p>
+    <p>Delivered by standard first class - so please allow 1/2 days from despatch</p>
+    <br>
+    <h3>Payments</h3>
+    <p>We accept all major credit and debits cards</p>
+    <br>
+    <h3>Returns</h3>
+    <p>We hope you are satisfied with your purchase, but if there is a problem please contact us via email</p>
 </div>
 {% endblock %}

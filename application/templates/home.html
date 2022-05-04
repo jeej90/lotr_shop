@@ -1,10 +1,15 @@
 {% extends "layout.html" %}
 {% block body_content %}
-<div class="container body-box">
+<!--<div class="container body-box">-->
 <!--    <div class = "" style="background-image:"></div>-->
-  <img src="{{url_for('static', filename='images/carousel1.jpeg')}}" style="width:100%;">
-    </br>
-    </br>
+<!--  <img src="{{url_for('static', filename='images/carousel1.jpeg')}}" style="width:100%;">-->
+<!--    </br>-->
+<!--    </br>-->
+<!--<div class="container body-box">-->
+<!--&lt;!&ndash;    <div class = "" style="background-image:"></div>&ndash;&gt;-->
+<!--  <img src="{{url_for('static', filename='images/carousel1.jpeg')}}" style="width:100%;">-->
+<!--    </br>-->
+<!--    </br>-->
 <!--    {% for product in products %}-->
 <!--    {% set product_id = product.id %}-->
 <!--    {% set image = product.image %}-->
@@ -16,8 +21,34 @@
 <!--        <p class="more info" ><a href="product/{{product_id}}"> Click for more information</a></p>-->
 <!--    </div>-->
 <!--    {% endfor %}-->
-        <div class="container" style="display:inline; width: 100% padding:30px; align:center;">
-            <h2 style="color:white;"></br></br></br>Shop Lord of the Rings</h2>
+<div class="container image-body-box">
+      <img src="{{url_for('static', filename='images/carousel1_frame.png')}}" style="width:100%;">
+</div>
+<div class="container all-body-box">
+<!--    <h1>Welcome to The Lord of the Rings Emporium</h1>-->
+<!--    <h2>The one shop to rule them all!</h2>-->
+    <br>
+    <h1>The treasures of Middle Earth have come to Earth!</h1>
+    <p>Our amazing range of Lord Of The Rings merchandise is guaranteed to have you saying “my precious” more times than Gollum in all three extended edition movies. From bewitching jewellery that is sure to shift Sauron’s gaze, to Lord of the Rings chess sets fit for any highborn elf, we have got a huge selection for you to choose from.</p>
+</div>
+<div class="container image-body-box">
+<!--    <img src="{{url_for('static', filename='images/lotr_shop_homepageimage_frame2.jpg')}}" style="width:100%;" width="400px" height="375px">-->
+
+<!--    <h2>All Products</h2>-->
+<!--&lt;!&ndash;    <div class = "" style="background-image:"></div>&ndash;&gt;-->
+<!--    {% for product in products %}-->
+<!--    {% set product_id = product.id %}-->
+<!--    {% set image = product.image %}-->
+<!--    <div class="product-box container">-->
+<!--        <img src= "{{ url_for('static', filename ='images/product_images/') }}{{image}}" width="360px" height="360px">-->
+<!--        <h3 class="product-title"><a href="product/{{product_id}}" style="color:#B8860B;">{{ product.name }}</a></h3>-->
+<!--&lt;!&ndash;        <p class="product-description">{{ product.description }}</p>&ndash;&gt;-->
+<!--        <p class="product-price">£{{ product.full_price }}</p>-->
+<!--        <p class="more info" ><a href="product/{{product_id}}"> Click for more information</a></p>-->
+<!--    </div>-->
+<!--    {% endfor %}-->
+       <div class="container" style="display:inline; width: 100% padding:30px; align:center;">
+            <h1 style="color:white;">Shop Lord of the Rings</h1>
             <div style="display:inline-block;">
             <a href="{{ url_for('collectibles') }}"><img src= "{{ url_for('static', filename ='images/c1-collectibles.jpg') }}" width="400px;" height="400px;" style="border: 1px solid #B8860B;"></a>
             <a href="{{ url_for('games') }}"><img src= "{{ url_for('static', filename ='images/c2-games.jpg') }}"  width="400px;" height="400px;" style="border: 1px solid #B8860B;"></a>
@@ -25,5 +56,4 @@
             </div>
         </div>
 </div>
-
 {% endblock %}
