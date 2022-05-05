@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body_content %}
 <div class="container image-body-box">
-      <img src="{{url_for('static', filename='images/carousel6_frame.png')}}" style="width:100%;" width="400px" height="500px">
+      <img src="{{url_for('static', filename='images/carousel6_frame.png')}}" style="width:100%;" width="400px" height="650px">
 </div>
 <div class="container all-body-box">
     <h1>Collectibles</h1>
@@ -9,7 +9,7 @@
     {% set product_id = product.id %}
     {% set image = product.image %}
     <div class="product-box container">
-        <img src= "{{ url_for('static', filename ='images/product_images_mm/') }}{{image}}" width="360px" height="300px">
+        <a href="product/{{product_id}}"><img src= "{{ url_for('static', filename ='images/product_images/') }}{{image}}" width="360px" height="300px"></a>
         <h3 class="product-title"><a href="product/{{product_id}}" style="color:#B8860B;">{{ product.name }}</a></h3>
 <!--        <p class="product-description">{{ product.description }}</p>-->
         <div class="grid-container">

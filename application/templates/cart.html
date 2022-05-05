@@ -9,34 +9,37 @@
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Subtotal</th>
-                <th>Update</th>
-                <th>Delete</th>
+                <th></th>
+                <th></th>
             </thead>
             <tbody>
                 {% for key, product in session['Cart'].items() %}
                 <tr>
-                    <td>{{product.name}}</td>
+                    <td style="color:white;">{{product.name}}</td>
                     <form action="{{url_for('update_cart', code=key)}}" method="post">
-                    <td>£{{product.price}}</td>
-                    <td> <input type="number" name="quantity" min="1" max="10" value="{{product.quantity}}"> </td>
+                    <td style="color:white;">£{{product.price}}</td>
+                    <td> <input type="number" name="quantity" min="1" max="{{available_stock}}" value="{{product.quantity}}"> </td>
                     {% set subtotal = product.quantity|int * product.price|float  %}
-                    <td>{{ subtotal }}</td>
-                    <td><button type="submit">Update</button> </td>
+                    <td style="color:white;">{{ subtotal }}</td>
+                    <td><button type="submit" class="form-group-2">Update</button> </td>
                 </form>
-                    <td> <a href="{{url_for('delete_item', id=key)}}">Delete</a></td>
+                    <td><button class="form-group-2"><a href="{{url_for('delete_item', id=key)}}">Delete</a></button></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <table class="table table-sm">
+        <table class="table">
            <tr>
                <td> <h5>Grand total: £{{ grand_total }}</h5> </td>
-                <td> <a href="{{ url_for('clear_cart') }}"> Clear Cart</a> </td>
            </tr>
-           <tr>
                <form action="{{ url_for('checkout') }}">
-                   <td><button type="submit">Proceed to Checkout</button></td></form>
-           </tr>
+                    <tr>
+                        <td><button class="form-group-2" style="width: 300px;"><a href="{{ url_for('clear_cart') }}"> Clear Cart</a></button></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" class="form-group-2" style="width: 300px;">Proceed to Checkout</button></td>
+                    </tr>
+               </form>
         </table>
         </div>
     </div>

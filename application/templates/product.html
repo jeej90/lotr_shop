@@ -2,25 +2,25 @@
 {% block body_content %}
 
 <div class="container body-box">
-    <div class="grid-container">
-        <div class="grid-child image">
-            <img src= "{{ url_for('static', filename ='images/product_images_mm/' + image_name) }}" width="460" height="460">
+    <div class="grid-container" style="padding-top: 40px;">
+        <div class="grid-child image product-image-main">
+            <img src= "{{ url_for('static', filename ='images/product_images/' + image_name) }}" width="800" height="560">
         </div>
         <div class="grid-child product">
-            <h1 class="product-title">{{ name }}</h1>
-            <p class="product-description">{{ description }}</p>
-            <p class="product-price">£{{ price }}</p>
+            <h1 class="product-title-main">{{ name }}</h1>
+            <p class="product-price-main">£{{ price }}</p>
+            <p class="product-description-main">{{ description }}</p>
+                    <!--Shopping Cart code-->
+            <div>
+            <form action="{{url_for('add_to_cart')}}" method="post" style="float:left;">
+                <input type="hidden" name="product_id" value="{{product_id}}"></input>
+                <label style="text-align: left;">Quantity:</label>
+                <input class ="input" type="number" name="quantity" id="{{product_id}}" value="1" min="1" max="{{available_stock}}"></input>
+                <button type="submit">Add to cart</button>
+            </form>
+                </div>
         </div>
-    </div>
-    <!--Shopping Cart code-->
-    <div class="container">
-        <form action="{{url_for('add_to_cart')}}" method="post">
-            <input type="hidden" name="product_id" value="{{product_id}}"></input>
-            <label>Quantity:</label>
-            <input class ="input" type="number" name="quantity" id="{{product_id}}" value="1" min="1" max="{{available_stock}}"></input>
-            <button type="submit">Add to cart</button>
-        </form>
-    </div>
+        </div>
         <div class="container" style="display:inline; width: 100% padding:30px; align:center;">
             <h2 style="color:white;"></br></br></br>Shop more Lord of the Rings</h2>
             <div style="display:inline-block;">
